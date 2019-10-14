@@ -1,0 +1,111 @@
+---
+swagger: "2.0"
+info:
+  description: "This is what-api"
+  version: "1.0.0"
+  title: "What API"
+  contact:
+    email: "you@your-company.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "what-appy-server.herokuapp.com"
+basePath: "/whatapi"
+tags:
+- name: "admins"
+  description: "Secured Admin-only calls"
+- name: "developers"
+  description: "Operations available to regular developers"
+schemes:
+- "https"
+paths:
+  /note:
+    get:
+      tags:
+      - "developers"
+      summary: "searches note"
+      description: "By passing in the appropriate options, you can search for\navailable\
+        \ note in the system\n"
+      operationId: "searchNote"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "note id"
+        required: false
+        type: "string"
+        format: "uuid"
+      - name: "skip"
+        in: "query"
+        description: "number of records to skip for pagination"
+        required: false
+        type: "integer"
+        minimum: 0
+        format: "int32"
+      - name: "limit"
+        in: "query"
+        description: "maximum number of records to return"
+        required: false
+        type: "integer"
+        maximum: 50
+        minimum: 0
+        format: "int32"
+      responses:
+        200:
+          description: "search results matching criteria"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/NoteItem"
+        400:
+          description: "bad input parameter"
+      x-swagger-router-controller: "Developers"
+    post:
+      tags:
+      - "admins"
+      summary: "adds a note item"
+      description: "Adds an item to the system"
+      operationId: "addNote"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "NoteItem"
+        description: "Note item to add"
+        required: false
+        schema:
+          $ref: "#/definitions/NoteItem"
+      responses:
+        201:
+          description: "item created"
+        400:
+          description: "invalid input, object invalid"
+        409:
+          description: "an existing item already exists"
+      x-swagger-router-controller: "Admins"
+definitions:
+  NoteItem:
+    type: "object"
+    required:
+    - "creationDate"
+    - "id"
+    - "text"
+    properties:
+      id:
+        type: "string"
+        format: "uuid"
+        example: "c290faee-6c54-4b01-90e6-d701748f0851"
+      creationDate:
+        type: "string"
+        format: "date-time"
+        example: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
+      text:
+        type: "string"
+        example: "Some note"
+    example:
+      id: "c290faee-6c54-4b01-90e6-d701748f0851"
+      text: "Some note"
+      creationDate: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
