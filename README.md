@@ -23,30 +23,6 @@ Then install it via:
 npm install what_api --save
 ```
 
-##### Local development
-
-To use the library locally without publishing to a remote npm registry, first install the dependencies by changing 
-into the directory containing `package.json` (and this README). Let's call this `JAVASCRIPT_CLIENT_DIR`. Then run:
-
-```shell
-npm install
-```
-
-Next, [link](https://docs.npmjs.com/cli/link) it globally in npm with the following, also from `JAVASCRIPT_CLIENT_DIR`:
-
-```shell
-npm link
-```
-
-Finally, switch to the directory you want to use your what_api from, and run:
-
-```shell
-npm link /path/to/<JAVASCRIPT_CLIENT_DIR>
-```
-
-You should now be able to `require('what_api')` in javascript files from the directory you ran the last 
-command above from.
-
 #### git
 #
 If the library is hosted at a git repository, e.g.
@@ -61,8 +37,7 @@ then install it via:
 
 The library also works in the browser environment via npm and [browserify](http://browserify.org/). After following
 the above steps with Node.js and installing browserify with `npm install -g browserify`,
-perform the following (assuming *main.js* is your entry file, that's to say your javascript file where you actually 
-use this library):
+perform the following (assuming *main.js* is your entry file):
 
 ```shell
 browserify main.js > bundle.js
@@ -95,7 +70,7 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```javascript
 var WhatApi = require('what_api');
 
-var api = new WhatApi.AdminsApi()
+var api = new WhatApi.DevelopersApi()
 
 var opts = { 
   'noteItem': new WhatApi.NoteItem() // {NoteItem} Note item to add
@@ -118,8 +93,9 @@ All URIs are relative to *https://what-appy-server.herokuapp.com/whatapi*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*WhatApi.AdminsApi* | [**addNote**](docs/AdminsApi.md#addNote) | **POST** /note | adds a note item
+*WhatApi.DevelopersApi* | [**addNote**](docs/DevelopersApi.md#addNote) | **POST** /note | adds a note item
 *WhatApi.DevelopersApi* | [**searchNote**](docs/DevelopersApi.md#searchNote) | **GET** /note | searches note
+*WhatApi.DevelopersApi* | [**updateNote**](docs/DevelopersApi.md#updateNote) | **PUT** /note | updates a note item
 
 
 ## Documentation for Models

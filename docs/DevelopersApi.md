@@ -4,8 +4,56 @@ All URIs are relative to *https://what-appy-server.herokuapp.com/whatapi*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**addNote**](DevelopersApi.md#addNote) | **POST** /note | adds a note item
 [**searchNote**](DevelopersApi.md#searchNote) | **GET** /note | searches note
+[**updateNote**](DevelopersApi.md#updateNote) | **PUT** /note | updates a note item
 
+
+<a name="addNote"></a>
+# **addNote**
+> addNote(opts)
+
+adds a note item
+
+Adds an item to the database
+
+### Example
+```javascript
+import WhatApi from 'what_api';
+
+let apiInstance = new WhatApi.DevelopersApi();
+
+let opts = { 
+  'noteItem': new WhatApi.NoteItem() // NoteItem | Note item to add
+};
+
+apiInstance.addNote(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **noteItem** | [**NoteItem**](NoteItem.md)| Note item to add | [optional] 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="searchNote"></a>
 # **searchNote**
@@ -17,24 +65,23 @@ By passing in the appropriate options, you can search for available note in the 
 
 ### Example
 ```javascript
-var WhatApi = require('what_api');
+import WhatApi from 'what_api';
 
-var apiInstance = new WhatApi.DevelopersApi();
+let apiInstance = new WhatApi.DevelopersApi();
 
-var opts = { 
+let opts = { 
   'id': "id_example", // String | note id
   'skip': 56, // Number | number of records to skip for pagination
   'limit': 56 // Number | maximum number of records to return
 };
 
-var callback = function(error, data, response) {
+apiInstance.searchNote(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.searchNote(opts, callback);
+});
 ```
 
 ### Parameters
@@ -56,5 +103,51 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="updateNote"></a>
+# **updateNote**
+> updateNote(opts)
+
+updates a note item
+
+Updates an item in the database
+
+### Example
+```javascript
+import WhatApi from 'what_api';
+
+let apiInstance = new WhatApi.DevelopersApi();
+
+let opts = { 
+  'noteItem': new WhatApi.NoteItem() // NoteItem | Note item to update
+};
+
+apiInstance.updateNote(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **noteItem** | [**NoteItem**](NoteItem.md)| Note item to update | [optional] 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: applicatoin/json
  - **Accept**: application/json
 
