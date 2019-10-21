@@ -148,6 +148,6 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: applicatoin/json
+ - **Content-Type**: application/json
  - **Accept**: application/json
 

@@ -34,14 +34,7 @@ export default class NoteItem {
     */
 
     constructor(id, creationDate, text) {
-        
-
-        
-        
-
         this['id'] = id;this['creationDate'] = creationDate;this['text'] = text;
-
-        
     }
 
     /**
@@ -54,11 +47,6 @@ export default class NoteItem {
     static constructFromObject(data, obj) {
         if (data) {
             obj = obj || new NoteItem();
-
-            
-            
-            
-
             if (data.hasOwnProperty('id')) {
                 obj['id'] = ApiClient.convertToType(data['id'], 'String');
             }
@@ -84,14 +72,6 @@ export default class NoteItem {
     * @member {String} text
     */
     text = undefined;
-
-
-
-
-
-
-
-
 }
 
 

@@ -152,7 +152,7 @@ export default class DevelopersApi {
       };
 
       let authNames = [];
-      let contentTypes = ['applicatoin/json'];
+      let contentTypes = ['application/json'];
       let accepts = ['application/json'];
       let returnType = null;
 
