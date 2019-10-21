@@ -93,14 +93,14 @@ paths:
       description: "Updates an item in the database"
       operationId: "updateNote"
       consumes:
-      - "applicatoin/json"
+      - "application/json"
       produces:
       - "application/json"
       parameters:
       - in: "body"
         name: "NoteItem"
         description: "Note item to update"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NoteItem"
       responses:
