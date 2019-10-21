@@ -63,9 +63,9 @@ paths:
       x-swagger-router-controller: "Developers"
     post:
       tags:
-      - "admins"
+      - "developers"
       summary: "adds a note item"
-      description: "Adds an item to the system"
+      description: "Adds an item to the database"
       operationId: "addNote"
       consumes:
       - "application/json"
@@ -85,7 +85,30 @@ paths:
           description: "invalid input, object invalid"
         409:
           description: "an existing item already exists"
-      x-swagger-router-controller: "Admins"
+      x-swagger-router-controller: "Developers"
+    put:
+      tags:
+      - "developers"
+      summary: "updates a note item"
+      description: "Updates an item in the database"
+      operationId: "updateNote"
+      consumes:
+      - "applicatoin/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "NoteItem"
+        description: "Note item to update"
+        required: false
+        schema:
+          $ref: "#/definitions/NoteItem"
+      responses:
+        200:
+          description: "item updated"
+        400:
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
 definitions:
   NoteItem:
     type: "object"

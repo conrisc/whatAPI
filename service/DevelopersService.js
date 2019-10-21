@@ -2,6 +2,20 @@
 
 
 /**
+ * adds a note item
+ * Adds an item to the database
+ *
+ * noteItem NoteItem Note item to add (optional)
+ * no response value expected for this operation
+ **/
+exports.addNote = function(noteItem) {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+}
+
+
+/**
  * searches note
  * By passing in the appropriate options, you can search for available note in the system 
  *
@@ -27,6 +41,20 @@ exports.searchNote = function(id,skip,limit) {
     } else {
       resolve();
     }
+  });
+}
+
+
+/**
+ * updates a note item
+ * Updates an item in the database
+ *
+ * noteItem NoteItem Note item to update (optional)
+ * no response value expected for this operation
+ **/
+exports.updateNote = function(noteItem) {
+  return new Promise(function(resolve, reject) {
+    resolve();
   });
 }
 
