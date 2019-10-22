@@ -18,10 +18,14 @@ exports.addNote = function(noteItem) {
 		function insertNote(db) {
 			const collection = db.collection('notes');
 			collection.insertOne(noteItem, function(err, r) {
-				if (err)
+				if (err) {
+					console.log('Error while inserting note: ', err)
 					resolve(err);
-				else
+				}
+				else {
+					console.log('Note inserted', r)
 					resolve(r);
+				}
 			});
 		}
 	});
