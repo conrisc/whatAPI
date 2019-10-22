@@ -32,7 +32,8 @@ export default class ApiClient {
         /**
          * The base URL against which to resolve every API call's (relative) path.
          * @type {String}
-         * @default https://what-appy-server.herokuapp.com/whatapi         */
+         * @default https://what-appy-server.herokuapp.com/whatapi
+         */
         this.basePath = 'https://what-appy-server.herokuapp.com/whatapi'.replace(/\/+$/, '');
 
         /**

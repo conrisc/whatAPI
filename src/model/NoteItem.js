@@ -28,13 +28,19 @@ export default class NoteItem {
     * Constructs a new <code>NoteItem</code>.
     * @alias module:model/NoteItem
     * @class
-    * @param id {String} 
     * @param creationDate {String} 
     * @param text {String} 
     */
 
-    constructor(id, creationDate, text) {
-        this['id'] = id;this['creationDate'] = creationDate;this['text'] = text;
+    constructor(creationDate, text) {
+        
+
+        
+        
+
+        this['creationDate'] = creationDate;this['text'] = text;
+
+        
     }
 
     /**
@@ -47,8 +53,13 @@ export default class NoteItem {
     static constructFromObject(data, obj) {
         if (data) {
             obj = obj || new NoteItem();
-            if (data.hasOwnProperty('id')) {
-                obj['id'] = ApiClient.convertToType(data['id'], 'String');
+
+            
+            
+            
+
+            if (data.hasOwnProperty('_id')) {
+                obj['_id'] = ApiClient.convertToType(data['_id'], 'String');
             }
             if (data.hasOwnProperty('creationDate')) {
                 obj['creationDate'] = ApiClient.convertToType(data['creationDate'], 'String');
@@ -61,9 +72,9 @@ export default class NoteItem {
     }
 
     /**
-    * @member {String} id
+    * @member {String} _id
     */
-    id = undefined;
+    _id = undefined;
     /**
     * @member {String} creationDate
     */
@@ -72,6 +83,14 @@ export default class NoteItem {
     * @member {String} text
     */
     text = undefined;
+
+
+
+
+
+
+
+
 }
 
 

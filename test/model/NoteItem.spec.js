@@ -54,7 +54,7 @@
       //expect(instance).to.be.a(WhatApi.NoteItem);
     });
 
-    it('should have the property id (base name: "id")', function() {
+    it('should have the property id (base name: "_id")', function() {
       // uncomment below and update the code to test the property id
       //var instane = new WhatApi.NoteItem();
       //expect(instance).to.be();
