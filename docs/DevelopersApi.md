@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="addNote"></a>
 # **addNote**
-> addNote(opts)
+> &#39;String&#39; addNote(opts)
 
 adds a note item
 
@@ -31,7 +31,7 @@ apiInstance.addNote(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 });
 ```
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+**&#39;String&#39;**
 
 ### Authorization
 

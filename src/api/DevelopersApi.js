@@ -38,7 +38,7 @@ export default class DevelopersApi {
      * Callback function to receive the result of the addNote operation.
      * @callback module:api/DevelopersApi~addNoteCallback
      * @param {String} error Error message, if any.
-     * @param data This operation does not return a value.
+     * @param {'String'} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
@@ -48,6 +48,7 @@ export default class DevelopersApi {
      * @param {Object} opts Optional parameters
      * @param {module:model/NoteItem} opts.noteItem Note item to add
      * @param {module:api/DevelopersApi~addNoteCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link 'String'}
      */
     addNote(opts, callback) {
       opts = opts || {};
@@ -66,7 +67,7 @@ export default class DevelopersApi {
       let authNames = [];
       let contentTypes = ['application/json'];
       let accepts = ['application/json'];
-      let returnType = null;
+      let returnType = 'String';
 
       return this.apiClient.callApi(
         '/note', 'POST',
