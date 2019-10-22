@@ -1,5 +1,7 @@
 'use strict';
 
+const ObjectId = require('mongodb').ObjectId;
+
 const DBService = require('./DatabaseService');
 
 
@@ -43,22 +45,23 @@ exports.addNote = function(noteItem) {
  * returns List
  **/
 exports.searchNote = function(id,skip,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "_id" : "c290faee-6c54-4b01-90e6-d701748f0851",
-  "text" : "Some note",
-  "creationDate" : "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
-}, {
-  "_id" : "c290faee-6c54-4b01-90e6-d701748f0851",
-  "text" : "Some note",
-  "creationDate" : "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+	return new Promise(function(resolve, reject) {
+		DBService.getDB()
+			.then(findNote);
+
+		function findNote(db) {
+			const collection = db.collection('notes');
+			collection.find({ _id: new ObjectId(id) }).toArray(log);
+		}
+
+		function log(err, docs) {
+			if (err)
+				console.log(err);
+			else {
+				console.log('Found: ', docs);
+				resolve(docs);
+			}
+		}
   });
 }
 
