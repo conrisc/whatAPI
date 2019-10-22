@@ -1,5 +1,7 @@
 'use strict';
 
+const DBService = require('./DatabaseService');
+
 
 /**
  * adds a note item
@@ -9,9 +11,21 @@
  * no response value expected for this operation
  **/
 exports.addNote = function(noteItem) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+	return new Promise(function(resolve, reject) {
+		DBService.getDB()
+			.then(insertNote);
+
+		function insertNote(db) {
+			const collection = db.collection('notes');
+			collection.insertOne(noteItem, function(err, r) {
+				if (err)
+					resolve(err);
+				else
+					resolve(r);
+			});
+		}
+	});
+
 }
 
 
