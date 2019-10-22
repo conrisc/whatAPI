@@ -8,9 +8,3 @@
  * noteItem NoteItem Note item to add (optional)
  * no response value expected for this operation
  **/
-exports.addNote = function(noteItem) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
-}
-
