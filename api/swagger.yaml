@@ -9,8 +9,8 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "what-appy-server.herokuapp.com"
-basePath: "/whatapi"
+host: "virtserver.swaggerhub.com"
+basePath: "/conrisc/whatapi/1.0.0"
 tags:
 - name: "admins"
   description: "Secured Admin-only calls"
@@ -100,7 +100,7 @@ paths:
       - in: "body"
         name: "NoteItem"
         description: "Note item to update"
-        required: true
+        required: false
         schema:
           $ref: "#/definitions/NoteItem"
       responses:
@@ -114,13 +114,13 @@ definitions:
     type: "object"
     required:
     - "creationDate"
-    - "id"
     - "text"
     properties:
-      id:
+      _id:
         type: "string"
         format: "uuid"
         example: "c290faee-6c54-4b01-90e6-d701748f0851"
+        readOnly: true
       creationDate:
         type: "string"
         example: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
@@ -128,6 +128,6 @@ definitions:
         type: "string"
         example: "Some note"
     example:
-      id: "c290faee-6c54-4b01-90e6-d701748f0851"
+      _id: "c290faee-6c54-4b01-90e6-d701748f0851"
       text: "Some note"
       creationDate: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"

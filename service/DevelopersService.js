@@ -42,11 +42,11 @@ exports.searchNote = function(id,skip,limit) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = [ {
-  "id" : "c290faee-6c54-4b01-90e6-d701748f0851",
+  "_id" : "c290faee-6c54-4b01-90e6-d701748f0851",
   "text" : "Some note",
   "creationDate" : "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
 }, {
-  "id" : "c290faee-6c54-4b01-90e6-d701748f0851",
+  "_id" : "c290faee-6c54-4b01-90e6-d701748f0851",
   "text" : "Some note",
   "creationDate" : "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
 } ];
