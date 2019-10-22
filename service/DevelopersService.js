@@ -23,8 +23,8 @@ exports.addNote = function(noteItem) {
 					resolve(err);
 				}
 				else {
-					console.log('Note inserted', r)
-					resolve(r);
+					console.log('Note inserted', r.ops);
+					resolve([r.ops[0]['_id']]);
 				}
 			});
 		}
