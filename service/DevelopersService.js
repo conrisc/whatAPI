@@ -22,7 +22,7 @@ exports.addNote = function(noteItem) {
 			collection.insertOne(noteItem, function(err, r) {
 				if (err) {
 					console.log('Error while inserting note: ', err)
-					resolve(err);
+					reject(err);
 				}
 				else {
 					console.log('Note inserted', r.ops);
@@ -74,8 +74,24 @@ exports.searchNote = function(id,skip,limit) {
  * no response value expected for this operation
  **/
 exports.updateNote = function(noteItem) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+	return new Promise(function(resolve, reject) {
+		DBService.getDB()
+			.then(updateNote);
+
+		function updateNote(db) {
+			const collection = db.collection('notes');
+			console.log('New item to update', noteItem);
+			collection.updateOne({ _id: new ObjectId(noteItem._id) }, { $set: { text: noteItem.text }}, function(err, r) {
+				if (err) {
+					console.log('Error while updating note: ', err)
+					reject(err);
+				}
+				else {
+					console.log('Note updated', r);
+					resolve();
+				}
+			});
+		}
+	});
 }
 
