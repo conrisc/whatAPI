@@ -81,6 +81,8 @@ paths:
       responses:
         201:
           description: "item created"
+          schema:
+            type: "string"
         400:
           description: "invalid input, object invalid"
         409:
@@ -120,7 +122,6 @@ definitions:
         type: "string"
         format: "uuid"
         example: "c290faee-6c54-4b01-90e6-d701748f0851"
-        readOnly: true
       creationDate:
         type: "string"
         example: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
