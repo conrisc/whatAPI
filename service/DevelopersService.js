@@ -45,13 +45,17 @@ exports.addNote = function(noteItem) {
  * returns List
  **/
 exports.searchNote = function(id,skip,limit) {
+	const data = {
+		_id: new ObjectId(id)
+	}
+
 	return new Promise(function(resolve, reject) {
 		DBService.getDB()
 			.then(findNote);
 
 		function findNote(db) {
 			const collection = db.collection('notes');
-			collection.find({ _id: new ObjectId(id) }).toArray(log);
+			collection.find(id ? data : {}).toArray(log);
 		}
 
 		function log(err, docs) {
