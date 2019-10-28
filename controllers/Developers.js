@@ -14,6 +14,17 @@ module.exports.addNote = function addNote (req, res, next) {
     });
 };
 
+module.exports.removeNote = function removeNote (req, res, next) {
+  var id = req.swagger.params['id'].value;
+  Developers.removeNote(id)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.searchNote = function searchNote (req, res, next) {
   var id = req.swagger.params['id'].value;
   var skip = req.swagger.params['skip'].value;

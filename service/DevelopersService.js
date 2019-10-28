@@ -34,6 +34,35 @@ exports.addNote = function(noteItem) {
 
 }
 
+/**
+ * removes a note item
+ * Removes an item from the database
+ *
+ * id String note id
+ * no response value expected for this operation
+ **/
+exports.removeNote = function(id) {
+  return new Promise(function(resolve, reject) {
+		DBService.getDB()
+			.then(removeNote);
+
+		function removeNote(db) {
+			const collection = db.collection('notes');
+
+			collection.deleteOne({ _id: new ObjectId(id) }, (err, r) => {
+				if (err) {
+					console.error(err);
+					reject();
+				}
+				else {
+					console.log('Note removed: ', r);
+					resolve();
+				}
+			});
+		}
+  });
+}
+
 
 /**
  * searches note

@@ -111,6 +111,24 @@ paths:
         400:
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
+    delete:
+      tags:
+      - "developers"
+      summary: "removes a note item"
+      description: "Removes an item from the database"
+      operationId: "removeNote"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "note id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "item removed"
+        400:
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
 definitions:
   NoteItem:
     type: "object"
