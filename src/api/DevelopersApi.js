@@ -77,6 +77,51 @@ export default class DevelopersApi {
     }
 
     /**
+     * Callback function to receive the result of the removeNote operation.
+     * @callback module:api/DevelopersApi~removeNoteCallback
+     * @param {String} error Error message, if any.
+     * @param data This operation does not return a value.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * removes a note item
+     * Removes an item from the database
+     * @param {String} id note id
+     * @param {module:api/DevelopersApi~removeNoteCallback} callback The callback function, accepting three arguments: error, data, response
+     */
+    removeNote(id, callback) {
+      let postBody = null;
+
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling removeNote");
+      }
+
+
+      let pathParams = {
+      };
+      let queryParams = {
+        'id': id
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = [];
+      let accepts = [];
+      let returnType = null;
+
+      return this.apiClient.callApi(
+        '/note', 'DELETE',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, callback
+      );
+    }
+
+    /**
      * Callback function to receive the result of the searchNote operation.
      * @callback module:api/DevelopersApi~searchNoteCallback
      * @param {String} error Error message, if any.

@@ -94,6 +94,7 @@ All URIs are relative to *https://what-appy-server.herokuapp.com/whatapi*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *WhatApi.DevelopersApi* | [**addNote**](docs/DevelopersApi.md#addNote) | **POST** /note | adds a note item
+*WhatApi.DevelopersApi* | [**removeNote**](docs/DevelopersApi.md#removeNote) | **DELETE** /note | removes a note item
 *WhatApi.DevelopersApi* | [**searchNote**](docs/DevelopersApi.md#searchNote) | **GET** /note | searches note
 *WhatApi.DevelopersApi* | [**updateNote**](docs/DevelopersApi.md#updateNote) | **PUT** /note | updates a note item
 

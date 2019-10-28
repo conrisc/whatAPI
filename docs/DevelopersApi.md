@@ -5,6 +5,7 @@ All URIs are relative to *https://what-appy-server.herokuapp.com/whatapi*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addNote**](DevelopersApi.md#addNote) | **POST** /note | adds a note item
+[**removeNote**](DevelopersApi.md#removeNote) | **DELETE** /note | removes a note item
 [**searchNote**](DevelopersApi.md#searchNote) | **GET** /note | searches note
 [**updateNote**](DevelopersApi.md#updateNote) | **PUT** /note | updates a note item
 
@@ -54,6 +55,51 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+<a name="removeNote"></a>
+# **removeNote**
+> removeNote(id)
+
+removes a note item
+
+Removes an item from the database
+
+### Example
+```javascript
+import WhatApi from 'what_api';
+
+let apiInstance = new WhatApi.DevelopersApi();
+
+let id = "id_example"; // String | note id
+
+
+apiInstance.removeNote(id, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| note id | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
 
 <a name="searchNote"></a>
 # **searchNote**

@@ -58,6 +58,16 @@
         done();
       });
     });
+    describe('removeNote', function() {
+      it('should call removeNote successfully', function(done) {
+        //uncomment below and update the code to test removeNote
+        //instance.removeNote(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('searchNote', function() {
       it('should call searchNote successfully', function(done) {
         //uncomment below and update the code to test searchNote
