@@ -205,7 +205,7 @@ exports.updateNote = function(noteItem) {
 		function updateNote(db) {
 			const collection = db.collection('notes');
 			console.log('New item to update', noteItem);
-			collection.updateOne({ _id: new ObjectId(noteItem._id) }, { $set: { text: noteItem.text }}, function(err, r) {
+			collection.updateOne({ _id: new ObjectId(noteItem.id) }, { $set: { text: noteItem.text }}, function(err, r) {
 				if (err) {
 					console.log('Error while updating note: ', err)
 					reject(err);
