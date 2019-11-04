@@ -11,6 +11,12 @@
   "babel": {
     "plugins": [
       [
+        "babel-plugin-transform-builtin-extend",
+        {
+          "globals": ["Error", "Array"]
+        }
+      ],
+      [
         "@babel/plugin-proposal-class-properties",
         {
           "loose": true
@@ -25,7 +31,10 @@
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "path": "^0.12.7",
-    "superagent": "3.7.0"
+    "superagent": "3.7.0",
+    "babel-plugin-transform-builtin-extend": "^1.1.2",
+    "querystring": "0.2.0"
+
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
