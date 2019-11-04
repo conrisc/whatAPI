@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "This is what-api"
-  version: "1.0.0"
+  version: "1.1.0"
   title: "What API"
   contact:
     email: "you@your-company.com"
@@ -35,7 +35,6 @@ paths:
         description: "note id"
         required: false
         type: "string"
-        format: "uuid"
       - name: "skip"
         in: "query"
         description: "number of records to skip for pagination"
@@ -129,6 +128,115 @@ paths:
         400:
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
+  /song:
+    get:
+      tags:
+      - "developers"
+      summary: "Search song"
+      description: "By passing in the appropriate options, you can search for\navailable\
+        \ song in the system\n"
+      operationId: "searchSong"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "song id"
+        required: false
+        type: "string"
+      - name: "skip"
+        in: "query"
+        description: "number of records to skip for pagination"
+        required: false
+        type: "integer"
+        minimum: 0
+        format: "int32"
+      - name: "limit"
+        in: "query"
+        description: "maximum number of records to return"
+        required: false
+        type: "integer"
+        maximum: 300
+        minimum: 0
+        format: "int32"
+      responses:
+        200:
+          description: "search result matching criteria"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/SongItem"
+        400:
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
+    post:
+      tags:
+      - "developers"
+      summary: "adds a song item"
+      description: "Adds an item to the database"
+      operationId: "addSong"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "SongItem"
+        description: "Song item to add"
+        required: false
+        schema:
+          $ref: "#/definitions/SongItem"
+      responses:
+        201:
+          description: "item created"
+          schema:
+            type: "string"
+        400:
+          description: "invalid input, object invalid"
+        409:
+          description: "an existing item already exists"
+      x-swagger-router-controller: "Developers"
+    put:
+      tags:
+      - "developers"
+      summary: "updates a song item"
+      description: "Updates an item in the database"
+      operationId: "updateSong"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "SongItem"
+        description: "Note item to update"
+        required: false
+        schema:
+          $ref: "#/definitions/SongItem"
+      responses:
+        200:
+          description: "item updated"
+        400:
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
+    delete:
+      tags:
+      - "developers"
+      summary: "removes a song item"
+      description: "Removes an item from the database"
+      operationId: "removeSong"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "note id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "item removed"
+        400:
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
 definitions:
   NoteItem:
     type: "object"
@@ -149,3 +257,38 @@ definitions:
       _id: "4daef72846cae99923dfd6ez"
       text: "Some note"
       creationDate: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
+  SongItem:
+    type: "object"
+    required:
+    - "dateAdded"
+    - "tags"
+    - "title"
+    - "url"
+    properties:
+      _id:
+        type: "string"
+        example: "5daef72831cae99923dad6ez"
+      title:
+        type: "string"
+        example: "G-Eazy - Far alone"
+      url:
+        type: "string"
+        example: "https://youtube.com/watch?v=sxV1_Lr1yf0"
+      dateAdded:
+        type: "string"
+        example: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
+      tags:
+        type: "array"
+        example:
+        - "dance"
+        - "party"
+        items:
+          type: "string"
+    example:
+      _id: "5daef72831cae99923dad6ez"
+      title: "G-Eazy - Far alone"
+      url: "https://youtube.com/watch?v=sxV1_Lr1yf0"
+      dateAdded: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
+      tags:
+      - "dance"
+      - "party"
