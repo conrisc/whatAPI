@@ -175,7 +175,7 @@ exports.searchSong = function(id,skip,limit) {
 
 		function findNote(db) {
 			const collection = db.collection('songs');
-			collection.find(id ? data : {}).toArray(log);
+			collection.find(id ? data : {}).skip(skip).limit(limit).toArray(log);
 		}
 
 		function log(err, docs) {
