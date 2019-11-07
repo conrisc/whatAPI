@@ -7,7 +7,8 @@ const dataTypes = {
     PAUSE: 'pause',
     VOLUME_UP: 'volume_up',
     VOLUME_DOWN: 'volume_down',
-    LOAD_VIDEO: 'load_video'
+    LOAD_VIDEO: 'load_video',
+    PING: 'ping'
 }
 
 const clients = [];
@@ -51,6 +52,8 @@ function injectConfiguration(wss) {
             switch(dataFromClient.type) {
                 case dataTypes.JOIN:
                     addClientToChat(dataFromClient, ws);
+                    break;
+                case dataTypes.PING:
                     break;
                 case dataTypes.NEW_MESSAGE:
                 case dataTypes.PLAY:
