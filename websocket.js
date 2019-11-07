@@ -6,7 +6,8 @@ const dataTypes = {
     PLAY: 'play',
     PAUSE: 'pause',
     VOLUME_UP: 'volume_up',
-    VOLUME_DOWN: 'volume_down'
+    VOLUME_DOWN: 'volume_down',
+    LOAD_VIDEO: 'load_video'
 }
 
 const clients = [];
@@ -31,20 +32,12 @@ function injectConfiguration(wss) {
 
     const addClientToChat = (dataFromClient, ws) => {
         clients.push(ws);
-        // console.log(`Added user ${dataFromClient.username} to trip chat ${dataFromClient.tripId}`);
-
-        // const response = {
-        //     message: dataFromClient.message,
-        //     username: dataFromClient.username
-        // };
     }
 
     const handleNewMessage = (dataFromClient, ws) => {
         const response = {
-            type: dataFromClient.type,
+            ...dataFromClient,
         }
-        if (dataFromClient.message)
-            response.message = dataFromClient.message;
 
         sendMessage(JSON.stringify(response), ws);
     }
@@ -64,10 +57,9 @@ function injectConfiguration(wss) {
                 case dataTypes.PAUSE:
                 case dataTypes.VOLUME_UP:
                 case dataTypes.VOLUME_DOWN:
-                    handleNewMessage(dataFromClient, ws)
-                    break;
+                case dataTypes.LOAD_VIDEO:
                 default:
-
+                    handleNewMessage(dataFromClient, ws)
             }
         });
     });
