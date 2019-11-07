@@ -2,7 +2,11 @@ const WebSocket = require('ws');
 
 const dataTypes = {
     NEW_MESSAGE: 'new_message',
-    JOIN: 'join'
+    JOIN: 'join',
+    PLAY: 'play',
+    PAUSE: 'pause',
+    VOLUME_UP: 'volume_up',
+    VOLUME_DOWN: 'volume_down'
 }
 
 const clients = [];
@@ -38,8 +42,9 @@ function injectConfiguration(wss) {
     const handleNewMessage = (dataFromClient, ws) => {
         const response = {
             type: dataFromClient.type,
-            message: dataFromClient.message,
         }
+        if (dataFromClient.message)
+            response.message = dataFromClient.message;
 
         sendMessage(JSON.stringify(response), ws);
     }
@@ -55,6 +60,10 @@ function injectConfiguration(wss) {
                     addClientToChat(dataFromClient, ws);
                     break;
                 case dataTypes.NEW_MESSAGE:
+                case dataTypes.PLAY:
+                case dataTypes.PAUSE:
+                case dataTypes.VOLUME_UP:
+                case dataTypes.VOLUME_DOWN:
                     handleNewMessage(dataFromClient, ws)
                     break;
                 default:
