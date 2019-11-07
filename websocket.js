@@ -8,7 +8,8 @@ const dataTypes = {
     VOLUME_UP: 'volume_up',
     VOLUME_DOWN: 'volume_down',
     LOAD_VIDEO: 'load_video',
-    PING: 'ping'
+    PING: 'ping',
+    PONG: 'pong'
 }
 
 const clients = [];
@@ -43,6 +44,13 @@ function injectConfiguration(wss) {
         sendMessage(JSON.stringify(response), ws);
     }
 
+    const sendPong = (ws) => {
+        const response = {
+            type: dataTypes.PONG
+        }
+        ws.send(JSON.stringify(response));
+    }
+
     wss.on('connection', function (ws) {
         console.log('new connection');
 
@@ -54,6 +62,7 @@ function injectConfiguration(wss) {
                     addClientToChat(dataFromClient, ws);
                     break;
                 case dataTypes.PING:
+                    sendPong(ws);
                     break;
                 case dataTypes.NEW_MESSAGE:
                 case dataTypes.PLAY:
