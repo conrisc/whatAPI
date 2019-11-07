@@ -7,8 +7,6 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 let database = null;
 
 
-
-
 function getDB() {
     return new Promise(function (resolve, reject) {
         if (database)
