@@ -31,14 +31,14 @@
   var instance;
 
   describe('(package)', function() {
-    describe('NoteItem', function() {
+    describe('TagItem', function() {
       beforeEach(function() {
-        instance = new WhatApi.NoteItem();
+        instance = new WhatApi.TagItem();
       });
 
-      it('should create an instance of NoteItem', function() {
-        // TODO: update the code to test NoteItem
-        expect(instance).to.be.a(WhatApi.NoteItem);
+      it('should create an instance of TagItem', function() {
+        // TODO: update the code to test TagItem
+        expect(instance).to.be.a(WhatApi.TagItem);
       });
 
       it('should have the property id (base name: "_id")', function() {
@@ -47,16 +47,10 @@
         // expect(instance.id).to.be(expectedValueLiteral);
       });
 
-      it('should have the property creationDate (base name: "creationDate")', function() {
-        // TODO: update the code to test the property creationDate
-        expect(instance).to.have.property('creationDate');
-        // expect(instance.creationDate).to.be(expectedValueLiteral);
-      });
-
-      it('should have the property text (base name: "text")', function() {
-        // TODO: update the code to test the property text
-        expect(instance).to.have.property('text');
-        // expect(instance.text).to.be(expectedValueLiteral);
+      it('should have the property name (base name: "name")', function() {
+        // TODO: update the code to test the property name
+        expect(instance).to.have.property('name');
+        // expect(instance.name).to.be(expectedValueLiteral);
       });
 
     });
