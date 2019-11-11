@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "This is what-api"
-  version: "1.1.0"
+  version: "1.2.0"
   title: "What API"
   contact:
     email: "you@your-company.com"
@@ -159,6 +159,14 @@ paths:
         maximum: 300
         minimum: 0
         format: "int32"
+      - name: "tags"
+        in: "query"
+        description: "tags"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
       responses:
         200:
           description: "search result matching criteria"
@@ -228,7 +236,116 @@ paths:
       parameters:
       - name: "id"
         in: "query"
-        description: "note id"
+        description: "song id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "item removed"
+        400:
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
+  /tag:
+    get:
+      tags:
+      - "developers"
+      summary: "Search tag"
+      description: "By passing in the appropriate options, you can search for\navailable\
+        \ tag in the system\n"
+      operationId: "searchTag"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "tag id"
+        required: false
+        type: "string"
+      - name: "skip"
+        in: "query"
+        description: "number of records to skip for pagination"
+        required: false
+        type: "integer"
+        minimum: 0
+        format: "int32"
+      - name: "limit"
+        in: "query"
+        description: "maximum number of records to return"
+        required: false
+        type: "integer"
+        maximum: 300
+        minimum: 0
+        format: "int32"
+      responses:
+        200:
+          description: "search result matching criteria"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/TagItem"
+        400:
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
+    post:
+      tags:
+      - "developers"
+      summary: "adds a tag item"
+      description: "Adds an item to the database"
+      operationId: "addTag"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "TagItem"
+        description: "Tag item to add"
+        required: false
+        schema:
+          $ref: "#/definitions/TagItem"
+      responses:
+        201:
+          description: "item created"
+          schema:
+            type: "string"
+        400:
+          description: "invalid input, object invalid"
+        409:
+          description: "an existing item already exists"
+      x-swagger-router-controller: "Developers"
+    put:
+      tags:
+      - "developers"
+      summary: "updates a tag item"
+      description: "Updates an item in the database"
+      operationId: "updateTag"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "TagItem"
+        description: "Note item to update"
+        required: false
+        schema:
+          $ref: "#/definitions/TagItem"
+      responses:
+        200:
+          description: "item updated"
+        400:
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
+    delete:
+      tags:
+      - "developers"
+      summary: "removes a song item"
+      description: "Removes an item from the database"
+      operationId: "removeTag"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "tag id"
         required: true
         type: "string"
       responses:
@@ -292,3 +409,17 @@ definitions:
       tags:
       - "dance"
       - "party"
+  TagItem:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      _id:
+        type: "string"
+        example: "5daef72831cae99923dad6ez"
+      name:
+        type: "string"
+        example: "Dance"
+    example:
+      name: "Dance"
+      _id: "5daef72831cae99923dad6ez"

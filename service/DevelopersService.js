@@ -62,6 +62,33 @@ exports.addSong = function(songItem) {
 }
 
 /**
+ * adds a tag item
+ * Adds an item to the database
+ *
+ * tagItem TagItem Tag item to add (optional)
+ * returns String
+ **/
+exports.addTag = function(tagItem) {
+  return new Promise(function(resolve, reject) {
+    DBService.getDB()
+      .then(insertTag);
+
+    function insertTag(db) {
+      const collection = db.collection('tags');
+      collection.insertOne(tagItem, function (err, r) {
+        if (err) {
+          console.log('Error while inserting tag: ', err);
+          reject(err);
+        } else {
+          console.log('Tag inserted', r.ops);
+          resolve([r.ops[0]['_id']]);
+        }
+      });
+    }
+  });
+}
+
+/**
  * removes a note item
  * Removes an item from the database
  *
@@ -120,6 +147,36 @@ exports.removeSong = function(id) {
   });
 }
 
+
+/**
+ * removes a song item
+ * Removes an item from the database
+ *
+ * id String tag id
+ * no response value expected for this operation
+ **/
+exports.removeTag = function(id) {
+  return new Promise(function(resolve, reject) {
+    DBService.getDB()
+      .then(removeTag);
+
+    function removeTag() {
+			const collection = db.collection('tags');
+
+			collection.deleteOne({ _id: new ObjectId(id) }, (err, r) => {
+				if (err) {
+					console.error(err);
+					reject();
+				}
+				else {
+					console.log('Tag removed: ', r);
+					resolve();
+				}
+			});
+    }
+  });
+}
+
 /**
  * searches note
  * By passing in the appropriate options, you can search for available note in the system 
@@ -130,9 +187,8 @@ exports.removeSong = function(id) {
  * returns List
  **/
 exports.searchNote = function(id,skip,limit) {
-	const data = {
-		_id: new ObjectId(id)
-	}
+	const data = {};
+	if (id) data._id = new ObjectId(id);
 
 	return new Promise(function(resolve, reject) {
 		DBService.getDB()
@@ -140,7 +196,7 @@ exports.searchNote = function(id,skip,limit) {
 
 		function findNote(db) {
 			const collection = db.collection('notes');
-			collection.find(id ? data : {}).toArray(log);
+			collection.find(data).toArray(log);
 		}
 
 		function log(err, docs) {
@@ -164,18 +220,51 @@ exports.searchNote = function(id,skip,limit) {
  * limit Integer maximum number of records to return (optional)
  * returns List
  **/
-exports.searchSong = function(id,skip,limit) {
-	const data = {
-		_id: new ObjectId(id)
-  }
+exports.searchSong = function(id,skip,limit, tags) {
+	const data = {}
+	if (id) data._id = new ObjectId(id);
+	if (tags && tags.length > 0) data.tags = { $in: tags };
 
   return new Promise(function(resolve, reject) {
 		DBService.getDB()
-			.then(findNote);
+			.then(findSong);
 
-		function findNote(db) {
+		function findSong(db) {
 			const collection = db.collection('songs');
-			collection.find(id ? data : {}).skip(skip).limit(limit).toArray(log);
+			collection.find(data).skip(skip).limit(limit).toArray(log);
+		}
+
+		function log(err, docs) {
+			if (err)
+				console.log(err);
+			else {
+				console.log('Found: ', docs);
+				resolve(docs);
+			}
+		}
+  });
+}
+
+/**
+ * Search tag
+ * By passing in the appropriate options, you can search for available tag in the system 
+ *
+ * id String tag id (optional)
+ * skip Integer number of records to skip for pagination (optional)
+ * limit Integer maximum number of records to return (optional)
+ * returns List
+ **/
+exports.searchTag = function(id,skip,limit) {
+	const data = {};
+	if (id) data._id = new ObjectId(id);
+
+	return new Promise(function(resolve, reject) {
+		DBService.getDB()
+			.then(findTag);
+
+		function findTag(db) {
+			const collection = db.collection('tags');
+			collection.find(data).skip(skip).limit(limit).toArray(log);
 		}
 
 		function log(err, docs) {
@@ -233,3 +322,17 @@ exports.updateSong = function(songItem) {
   });
 }
 
+
+
+/**
+ * updates a tag item
+ * Updates an item in the database
+ *
+ * tagItem TagItem Note item to update (optional)
+ * no response value expected for this operation
+ **/
+exports.updateTag = function(tagItem) {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+}
