@@ -354,6 +354,27 @@ paths:
         400:
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
+  /web:
+    get:
+      tags:
+      - "developers"
+      summary: "Get data"
+      description: "By passing in url, you can fetch data\n"
+      operationId: "getData"
+      produces:
+      - "text/html"
+      parameters:
+      - name: "url"
+        in: "query"
+        description: "url"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "search result matching criteria"
+        400:
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
 definitions:
   NoteItem:
     type: "object"

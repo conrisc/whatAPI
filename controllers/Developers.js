@@ -36,6 +36,17 @@ module.exports.addTag = function addTag (req, res, next) {
     });
 };
 
+module.exports.getData = function getData (req, res, next) {
+  var url = req.swagger.params['url'].value;
+  Developers.getData(url)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.removeNote = function removeNote (req, res, next) {
   var id = req.swagger.params['id'].value;
   Developers.removeNote(id)

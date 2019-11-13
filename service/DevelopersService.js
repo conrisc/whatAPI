@@ -3,6 +3,7 @@
 const ObjectId = require('mongodb').ObjectId;
 
 const DBService = require('./DatabaseService');
+const scrape = require('./scraperService').scrape;
 
 
 /**
@@ -24,7 +25,7 @@ exports.addNote = function(noteItem) {
 					console.log('Error while inserting note: ', err);
 					reject(err);
 				} else {
-					console.log('Note inserted', r.ops);
+					console.log('NOTE INSERTED:', r.ops);
 					resolve([r.ops[0]['_id']]);
 				}
 			});
@@ -278,6 +279,27 @@ exports.searchTag = function(id,skip,limit) {
   });
 }
 
+/**
+ * Get data
+ * By passing in url, you can fetch data
+ *
+ * url String url
+ * returns String
+ **/
+exports.getData = function(url) {
+	console.log('Scraping url: ', url);
+	const resultContainer = data.match(/<ol id=\"item-section(.*\s*)*?<\/ol>/)[0];
+	const results = resultContainer.split('<div class="yt-lockup ')
+		.slice(1,7)
+		.map((el)=> {
+			return {
+				title: el.match('<a href=.*?title="([^"]*)')[1],
+				videoId: el.match('<a href=.*?v=([^"&]*)')[1],
+				thumbnailUrl: el.match('<img.*?src="([^"?]*)')[1]
+			}
+		});
+	return scrape(url);
+}
 
 /**
  * updates a note item
