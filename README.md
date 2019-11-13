@@ -93,6 +93,7 @@ Class | Method | HTTP request | Description
 *WhatApi.DevelopersApi* | [**addNote**](docs/DevelopersApi.md#addNote) | **POST** /note | adds a note item
 *WhatApi.DevelopersApi* | [**addSong**](docs/DevelopersApi.md#addSong) | **POST** /song | adds a song item
 *WhatApi.DevelopersApi* | [**addTag**](docs/DevelopersApi.md#addTag) | **POST** /tag | adds a tag item
+*WhatApi.DevelopersApi* | [**getData**](docs/DevelopersApi.md#getData) | **GET** /web | Get data
 *WhatApi.DevelopersApi* | [**removeNote**](docs/DevelopersApi.md#removeNote) | **DELETE** /note | removes a note item
 *WhatApi.DevelopersApi* | [**removeSong**](docs/DevelopersApi.md#removeSong) | **DELETE** /song | removes a song item
 *WhatApi.DevelopersApi* | [**removeTag**](docs/DevelopersApi.md#removeTag) | **DELETE** /tag | removes a song item

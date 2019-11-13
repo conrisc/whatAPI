@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**addNote**](DevelopersApi.md#addNote) | **POST** /note | adds a note item
 [**addSong**](DevelopersApi.md#addSong) | **POST** /song | adds a song item
 [**addTag**](DevelopersApi.md#addTag) | **POST** /tag | adds a tag item
+[**getData**](DevelopersApi.md#getData) | **GET** /web | Get data
 [**removeNote**](DevelopersApi.md#removeNote) | **DELETE** /note | removes a note item
 [**removeSong**](DevelopersApi.md#removeSong) | **DELETE** /song | removes a song item
 [**removeTag**](DevelopersApi.md#removeTag) | **DELETE** /tag | removes a song item
@@ -148,6 +149,49 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="getData"></a>
+# **getData**
+> 'String' getData(url)
+
+Get data
+
+By passing in url, you can fetch data 
+
+### Example
+```javascript
+import {WhatApi} from 'what_api';
+
+let apiInstance = new WhatApi.DevelopersApi();
+
+let url = "url_example"; // String | url
+
+apiInstance.getData(url).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **url** | **String**| url | 
+
+### Return type
+
+**'String'**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 <a name="removeNote"></a>

@@ -109,6 +109,26 @@
           done();
         });
       });
+      describe('getData', function() {
+        it('should call getData successfully', function(done) {
+          // TODO: uncomment, update parameter values for getData call and complete the assertions
+          /*
+          var url = "url_example";
+
+          instance.getData(url).then(function(data) {
+            // TODO: update response assertions
+            expect(data).to.be.a('string');
+            // expect(data).to.be(null);
+
+            done();
+          }, function(error) {
+            done(error);
+          });
+          */
+          // TODO: uncomment and complete method invocation above, then delete this line and the next:
+          done();
+        });
+      });
       describe('removeNote', function() {
         it('should call removeNote successfully', function(done) {
           // TODO: uncomment, update parameter values for removeNote call
