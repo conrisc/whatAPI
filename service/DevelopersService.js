@@ -112,8 +112,9 @@ exports.getYtItems = function(title,limit) {
 		const ytItems = resultsContainer.split('<div class="yt-lockup ')
 			.slice(1, limit + 1)
 			.map((singleYtResult)=> {
+				const encodedTitle = singleYtResult.match('<a href=.*?title="([^"]*)')[1];
 				return {
-					title: singleYtResult.match('<a href=.*?title="([^"]*)')[1],
+					title: decodeURI(encodedTitle),
 					videoId: singleYtResult.match('<a href=.*?v=([^"&]*)')[1],
 					thumbnailUrl: singleYtResult.match('<img.*?src="([^"?]*)')[1]
 				}
