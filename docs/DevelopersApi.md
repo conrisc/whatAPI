@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**addNote**](DevelopersApi.md#addNote) | **POST** /note | adds a note item
 [**addSong**](DevelopersApi.md#addSong) | **POST** /song | adds a song item
 [**addTag**](DevelopersApi.md#addTag) | **POST** /tag | adds a tag item
-[**getData**](DevelopersApi.md#getData) | **GET** /web | Get data
+[**getYtItems**](DevelopersApi.md#getYtItems) | **GET** /ytitems | Get data
 [**removeNote**](DevelopersApi.md#removeNote) | **DELETE** /note | removes a note item
 [**removeSong**](DevelopersApi.md#removeSong) | **DELETE** /song | removes a song item
 [**removeTag**](DevelopersApi.md#removeTag) | **DELETE** /tag | removes a song item
@@ -61,7 +61,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 <a name="addSong"></a>
 # **addSong**
@@ -105,7 +105,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 <a name="addTag"></a>
 # **addTag**
@@ -149,11 +149,11 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: text/plain
 
-<a name="getData"></a>
-# **getData**
-> 'String' getData(url)
+<a name="getYtItems"></a>
+# **getYtItems**
+> [YtVideoItem] getYtItems(title, opts)
 
 Get data
 
@@ -165,9 +165,12 @@ import {WhatApi} from 'what_api';
 
 let apiInstance = new WhatApi.DevelopersApi();
 
-let url = "url_example"; // String | url
+let title = "title_example"; // String | title to search
 
-apiInstance.getData(url).then((data) => {
+let opts = { 
+  'limit': 5 // Number | maximum number of records to return
+};
+apiInstance.getYtItems(title, opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
@@ -179,11 +182,12 @@ apiInstance.getData(url).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **url** | **String**| url | 
+ **title** | **String**| title to search | 
+ **limit** | **Number**| maximum number of records to return | [optional] [default to 5]
 
 ### Return type
 
-**'String'**
+[**[YtVideoItem]**](YtVideoItem.md)
 
 ### Authorization
 
@@ -511,7 +515,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 <a name="updateSong"></a>
 # **updateSong**
@@ -555,7 +559,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 <a name="updateTag"></a>
 # **updateTag**
@@ -599,5 +603,5 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: Not defined
 
