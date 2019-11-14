@@ -36,9 +36,10 @@ module.exports.addTag = function addTag (req, res, next) {
     });
 };
 
-module.exports.getData = function getData (req, res, next) {
-  var url = req.swagger.params['url'].value;
-  Developers.getData(url)
+module.exports.getYtItems = function getYtItems (req, res, next) {
+  var title = req.swagger.params['title'].value;
+  var limit = req.swagger.params['limit'].value;
+  Developers.getYtItems(title,limit)
     .then(function (response) {
       utils.writeJson(res, response);
     })

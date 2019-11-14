@@ -1,6 +1,7 @@
 const https = require('https');
 
 exports.scrape = function scrape(url) {
+	console.log('Scraping url: ', url);
     return new Promise((resolve, reject) => {
         https.get(url, res => {
             res.setEncoding('utf8');

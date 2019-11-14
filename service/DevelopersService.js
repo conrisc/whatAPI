@@ -11,7 +11,7 @@ const scrape = require('./scraperService').scrape;
  * Adds an item to the database
  *
  * noteItem NoteItem Note item to add (optional)
- * no response value expected for this operation
+ * returns String
  **/
 exports.addNote = function(noteItem) {
 	return new Promise(function(resolve, reject) {
@@ -89,11 +89,45 @@ exports.addTag = function(tagItem) {
   });
 }
 
+
+/**
+ * Get data
+ * By passing in url, you can fetch data 
+ *
+ * title String title to search
+ * limit Integer maximum number of records to return (optional)
+ * returns List
+ **/
+exports.getYtItems = function(title,limit) {
+	const ytSearchUrl = `https://www.youtube.com/results?search_query=${title}&sp=EgIQAQ%253D%253D`;
+	return scrape(ytSearchUrl)
+		.then(createYtItems)
+		.catch(err => {
+			console.error(err);
+			return [];
+		});
+
+	function createYtItems(rawHtml) {
+		const resultsContainer = rawHtml.match(/<ol id=\"item-section(.*\s*)*?<\/ol>/)[0];
+		const ytItems = resultsContainer.split('<div class="yt-lockup ')
+			.slice(1, limit + 1)
+			.map((singleYtResult)=> {
+				return {
+					title: singleYtResult.match('<a href=.*?title="([^"]*)')[1],
+					videoId: singleYtResult.match('<a href=.*?v=([^"&]*)')[1],
+					thumbnailUrl: singleYtResult.match('<img.*?src="([^"?]*)')[1]
+				}
+			});
+		return ytItems;
+	}
+}
+
+
 /**
  * removes a note item
  * Removes an item from the database
  *
- * id String note id
+ * id String song id
  * no response value expected for this operation
  **/
 exports.removeNote = function(id) {
@@ -279,27 +313,6 @@ exports.searchTag = function(id,skip,limit) {
   });
 }
 
-/**
- * Get data
- * By passing in url, you can fetch data
- *
- * url String url
- * returns String
- **/
-exports.getData = function(url) {
-	console.log('Scraping url: ', url);
-	const resultContainer = data.match(/<ol id=\"item-section(.*\s*)*?<\/ol>/)[0];
-	const results = resultContainer.split('<div class="yt-lockup ')
-		.slice(1,7)
-		.map((el)=> {
-			return {
-				title: el.match('<a href=.*?title="([^"]*)')[1],
-				videoId: el.match('<a href=.*?v=([^"&]*)')[1],
-				thumbnailUrl: el.match('<img.*?src="([^"?]*)')[1]
-			}
-		});
-	return scrape(url);
-}
 
 /**
  * updates a note item

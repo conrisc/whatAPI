@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: "This is what-api"
-  version: "1.2.0"
+  version: "1.2.1"
   title: "What API"
   contact:
     email: "you@your-company.com"
@@ -69,7 +69,7 @@ paths:
       consumes:
       - "application/json"
       produces:
-      - "application/json"
+      - "text/plain"
       parameters:
       - in: "body"
         name: "NoteItem"
@@ -94,8 +94,6 @@ paths:
       description: "Updates an item in the database"
       operationId: "updateNote"
       consumes:
-      - "application/json"
-      produces:
       - "application/json"
       parameters:
       - in: "body"
@@ -186,7 +184,7 @@ paths:
       consumes:
       - "application/json"
       produces:
-      - "application/json"
+      - "text/plain"
       parameters:
       - in: "body"
         name: "SongItem"
@@ -211,8 +209,6 @@ paths:
       description: "Updates an item in the database"
       operationId: "updateSong"
       consumes:
-      - "application/json"
-      produces:
       - "application/json"
       parameters:
       - in: "body"
@@ -295,7 +291,7 @@ paths:
       consumes:
       - "application/json"
       produces:
-      - "application/json"
+      - "text/plain"
       parameters:
       - in: "body"
         name: "TagItem"
@@ -320,8 +316,6 @@ paths:
       description: "Updates an item in the database"
       operationId: "updateTag"
       consumes:
-      - "application/json"
-      produces:
       - "application/json"
       parameters:
       - in: "body"
@@ -354,24 +348,37 @@ paths:
         400:
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
-  /web:
+  /ytitems:
     get:
       tags:
       - "developers"
       summary: "Get data"
       description: "By passing in url, you can fetch data\n"
-      operationId: "getData"
+      operationId: "getYtItems"
       produces:
-      - "text/html"
+      - "application/json"
       parameters:
-      - name: "url"
+      - name: "title"
         in: "query"
-        description: "url"
+        description: "title to search"
         required: true
         type: "string"
+      - name: "limit"
+        in: "query"
+        description: "maximum number of records to return"
+        required: false
+        type: "integer"
+        default: 5
+        maximum: 20
+        minimum: 1
+        format: "int32"
       responses:
         200:
           description: "search result matching criteria"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/YtVideoItem"
         400:
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
@@ -444,3 +451,19 @@ definitions:
     example:
       name: "Dance"
       _id: "5daef72831cae99923dad6ez"
+  YtVideoItem:
+    type: "object"
+    properties:
+      title:
+        type: "string"
+        example: "LP - Muddy Waters"
+      videoId:
+        type: "string"
+        example: "Ss8t7a8n0U4"
+      thumbnailUrl:
+        type: "string"
+        example: "https://i.ytimg.com/vi/Ss8t7a8n0U4/default.jpg"
+    example:
+      videoId: "Ss8t7a8n0U4"
+      title: "LP - Muddy Waters"
+      thumbnailUrl: "https://i.ytimg.com/vi/Ss8t7a8n0U4/default.jpg"
