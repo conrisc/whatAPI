@@ -1,2 +1,4 @@
-node_modules/
-credentials.js
+nodejs-server/node_modules/
+nodejs-server/credentials.js
+
+javascript/node_modules/
