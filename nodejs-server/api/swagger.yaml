@@ -47,7 +47,7 @@ paths:
         description: "maximum number of records to return"
         required: false
         type: "integer"
-        maximum: 50
+        maximum: 50.0
         minimum: 0
         format: "int32"
       responses:
@@ -154,7 +154,7 @@ paths:
         description: "maximum number of records to return"
         required: false
         type: "integer"
-        maximum: 300
+        maximum: 300.0
         minimum: 0
         format: "int32"
       - name: "tags"
@@ -269,7 +269,7 @@ paths:
         description: "maximum number of records to return"
         required: false
         type: "integer"
-        maximum: 300
+        maximum: 300.0
         minimum: 0
         format: "int32"
       responses:
@@ -369,7 +369,7 @@ paths:
         required: false
         type: "integer"
         default: 5
-        maximum: 20
+        maximum: 25
         minimum: 1
         format: "int32"
       responses:
