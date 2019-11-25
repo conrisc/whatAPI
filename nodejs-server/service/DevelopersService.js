@@ -4,6 +4,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 const DBService = require('./DatabaseService');
 const scrape = require('./scraperService').scrape;
+const decodeHtml = require('./htmlDecoderService').decodeHtml;
 
 
 /**
@@ -114,7 +115,7 @@ exports.getYtItems = function(title,limit) {
 			.map((singleYtResult)=> {
 				const encodedTitle = singleYtResult.match('<a href=.*?title="([^"]*)')[1];
 				return {
-					title: decodeURI(encodedTitle),
+					title: decodeHtml(encodedTitle),
 					videoId: singleYtResult.match('<a href=.*?v=([^"&]*)')[1],
 					thumbnailUrl: singleYtResult.match('<img.*?src="([^"?]*)')[1]
 				}
