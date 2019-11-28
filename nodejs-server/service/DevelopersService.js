@@ -330,17 +330,21 @@ exports.updateNote = function(noteItem) {
 
 		function updateNote(db) {
 			const collection = db.collection('notes');
-			console.log('New item to update', noteItem);
-			collection.updateOne({ _id: new ObjectId(noteItem.id) }, { $set: { text: noteItem.text }}, function(err, r) {
-				if (err) {
-					console.log('Error while updating note: ', err)
-					reject(err);
+			console.log('New note to update', noteItem);
+			collection.updateOne(
+				{ _id: new ObjectId(noteItem.id) },
+				{ $set: { text: noteItem.text }},
+				function(err, r) {
+					if (err) {
+						console.log('Error while updating note: ', err)
+						reject(err);
+					}
+					else {
+						console.log('Note updated', r);
+						resolve();
+					}
 				}
-				else {
-					console.log('Note updated', r);
-					resolve();
-				}
-			});
+			);
 		}
 	});
 }
@@ -354,9 +358,29 @@ exports.updateNote = function(noteItem) {
  * no response value expected for this operation
  **/
 exports.updateSong = function(songItem) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+	return new Promise(function(resolve, reject) {
+		DBService.getDB()
+			.then(updateSong);
+
+		function updateSong(db) {
+			const collection = db.collection('songs');
+			console.log('New song to update', songItem);
+			collection.updateOne(
+				{ _id: new ObjectId(songItem.id) },
+				{ $set: { title: songItem.title, url: songItem.url, tags: songItem.tags } },
+				function (err, r) {
+					if (err) {
+						console.log('Error while updating song: ', err)
+						reject(err);
+					}
+					else {
+						console.log('Song updated', r);
+						resolve();
+					}
+				}
+			)
+		}
+	});
 }
 
 
