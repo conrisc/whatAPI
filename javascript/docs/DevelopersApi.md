@@ -393,7 +393,8 @@ let opts = {
   'id': "id_example", // String | song id
   'skip': 56, // Number | number of records to skip for pagination
   'limit': 56, // Number | maximum number of records to return
-  'tags': ["tags_example"] // [String] | tags
+  'title': "title_example", // String | a phrase song's title must contain
+  'tags': ["tags_example"] // [String] | tags which song must contain
 };
 apiInstance.searchSong(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -410,7 +411,8 @@ Name | Type | Description  | Notes
  **id** | **String**| song id | [optional] 
  **skip** | **Number**| number of records to skip for pagination | [optional] 
  **limit** | **Number**| maximum number of records to return | [optional] 
- **tags** | [**[String]**](String.md)| tags | [optional] 
+ **title** | **String**| a phrase song's title must contain | [optional] 
+ **tags** | [**[String]**](String.md)| tags which song must contain | [optional] 
 
 ### Return type
 

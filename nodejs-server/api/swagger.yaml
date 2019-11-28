@@ -51,13 +51,13 @@ paths:
         minimum: 0
         format: "int32"
       responses:
-        200:
+        "200":
           description: "search results matching criteria"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/NoteItem"
-        400:
+        "400":
           description: "bad input parameter"
       x-swagger-router-controller: "Developers"
     post:
@@ -78,13 +78,13 @@ paths:
         schema:
           $ref: "#/definitions/NoteItem"
       responses:
-        201:
+        "201":
           description: "item created"
           schema:
             type: "string"
-        400:
+        "400":
           description: "invalid input, object invalid"
-        409:
+        "409":
           description: "an existing item already exists"
       x-swagger-router-controller: "Developers"
     put:
@@ -103,9 +103,9 @@ paths:
         schema:
           $ref: "#/definitions/NoteItem"
       responses:
-        200:
+        "200":
           description: "item updated"
-        400:
+        "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
     delete:
@@ -121,9 +121,9 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
+        "200":
           description: "item removed"
-        400:
+        "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
   /song:
@@ -157,22 +157,27 @@ paths:
         maximum: 300.0
         minimum: 0
         format: "int32"
+      - name: "title"
+        in: "query"
+        description: "a phrase song's title must contain"
+        required: false
+        type: "string"
       - name: "tags"
         in: "query"
-        description: "tags"
+        description: "tags which song must contain"
         required: false
         type: "array"
         items:
           type: "string"
         collectionFormat: "multi"
       responses:
-        200:
+        "200":
           description: "search result matching criteria"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/SongItem"
-        400:
+        "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
     post:
@@ -193,13 +198,13 @@ paths:
         schema:
           $ref: "#/definitions/SongItem"
       responses:
-        201:
+        "201":
           description: "item created"
           schema:
             type: "string"
-        400:
+        "400":
           description: "invalid input, object invalid"
-        409:
+        "409":
           description: "an existing item already exists"
       x-swagger-router-controller: "Developers"
     put:
@@ -218,9 +223,9 @@ paths:
         schema:
           $ref: "#/definitions/SongItem"
       responses:
-        200:
+        "200":
           description: "item updated"
-        400:
+        "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
     delete:
@@ -236,9 +241,9 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
+        "200":
           description: "item removed"
-        400:
+        "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
   /tag:
@@ -273,13 +278,13 @@ paths:
         minimum: 0
         format: "int32"
       responses:
-        200:
+        "200":
           description: "search result matching criteria"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/TagItem"
-        400:
+        "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
     post:
@@ -300,13 +305,13 @@ paths:
         schema:
           $ref: "#/definitions/TagItem"
       responses:
-        201:
+        "201":
           description: "item created"
           schema:
             type: "string"
-        400:
+        "400":
           description: "invalid input, object invalid"
-        409:
+        "409":
           description: "an existing item already exists"
       x-swagger-router-controller: "Developers"
     put:
@@ -325,9 +330,9 @@ paths:
         schema:
           $ref: "#/definitions/TagItem"
       responses:
-        200:
+        "200":
           description: "item updated"
-        400:
+        "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
     delete:
@@ -343,9 +348,9 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
+        "200":
           description: "item removed"
-        400:
+        "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
   /ytitems:
@@ -373,13 +378,13 @@ paths:
         minimum: 1
         format: "int32"
       responses:
-        200:
+        "200":
           description: "search result matching criteria"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/YtVideoItem"
-        400:
+        "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
 definitions:

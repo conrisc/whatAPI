@@ -98,8 +98,9 @@ module.exports.searchSong = function searchSong (req, res, next) {
   var id = req.swagger.params['id'].value;
   var skip = req.swagger.params['skip'].value;
   var limit = req.swagger.params['limit'].value;
+  var title = req.swagger.params['title'].value;
   var tags = req.swagger.params['tags'].value;
-  Developers.searchSong(id,skip,limit,tags)
+  Developers.searchSong(id,skip,limit,title,tags)
     .then(function (response) {
       utils.writeJson(res, response);
     })
