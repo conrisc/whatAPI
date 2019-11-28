@@ -257,9 +257,10 @@ exports.searchNote = function(id,skip,limit) {
  * limit Integer maximum number of records to return (optional)
  * returns List
  **/
-exports.searchSong = function(id,skip,limit, tags) {
+exports.searchSong = function(id,skip,limit,title,tags) {
 	const data = {}
 	if (id) data._id = new ObjectId(id);
+	if (title) data.title = { $regex: title, $options: 'i' };
 	if (tags && tags.length > 0) data.tags = { $in: tags };
 
   return new Promise(function(resolve, reject) {
