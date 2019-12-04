@@ -364,23 +364,32 @@ exports.updateSong = function(songItem) {
 			.then(updateSong);
 
 		function updateSong(db) {
-			const collection = db.collection('songs');
-			console.log('New song to update', songItem);
-			collection.updateOne(
-				{ _id: new ObjectId(songItem.id) },
-				{ $set: { title: songItem.title, url: songItem.url, tags: songItem.tags } },
-				function (err, r) {
-					if (err) {
-						console.log('Error while updating song: ', err)
-						reject(err);
+			const tagsIds = songItem.tags.map(tag => new ObjectId(tag));
+			const collection = db.collection('tags');
+			collection.find({ _id: { $in: tagsIds } }).toArray(updateSongWithCorrectData);
+
+			function updateSongWithCorrectData(error, tagItems) {
+				if (error) reject(error);
+				const correctTags = tagItems.map(tagItem => tagItem._id);
+				const collection = db.collection('songs');
+				console.log('New song to update', songItem);
+				collection.updateOne(
+					{ _id: new ObjectId(songItem.id) },
+					{ $set: { title: songItem.title, url: songItem.url, tags: correctTags} },
+					function (err, r) {
+						if (err) {
+							console.log('Error while updating song: ', err)
+							reject(err);
+						}
+						else {
+							console.log('Song updated', r);
+							resolve();
+						}
 					}
-					else {
-						console.log('Song updated', r);
-						resolve();
-					}
-				}
-			)
+				)
+			}
 		}
+
 	});
 }
 
