@@ -521,7 +521,7 @@ No authorization required
 
 <a name="updateSong"></a>
 # **updateSong**
-> updateSong(opts)
+> SongItem updateSong(opts)
 
 updates a song item
 
@@ -536,8 +536,8 @@ let apiInstance = new WhatApi.DevelopersApi();
 let opts = { 
   'songItem': new WhatApi.SongItem() // SongItem | Note item to update
 };
-apiInstance.updateSong(opts).then(() => {
-  console.log('API called successfully.');
+apiInstance.updateSong(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
 }, (error) => {
   console.error(error);
 });
@@ -552,7 +552,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**SongItem**](SongItem.md)
 
 ### Authorization
 

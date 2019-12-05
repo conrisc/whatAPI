@@ -225,6 +225,8 @@ paths:
       responses:
         "200":
           description: "item updated"
+          schema:
+            $ref: "#/definitions/SongItem"
         "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
