@@ -382,7 +382,7 @@ exports.updateSong = function(songItem) {
 							reject(err);
 						}
 						else {
-							console.log('Song updated', r);
+							console.log('Song updated, modifiedCount:', r.modifiedCount);
 							resolve();
 						}
 					}
