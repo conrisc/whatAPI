@@ -330,7 +330,7 @@
       });
       describe('updateSong', function() {
         it('should call updateSong successfully', function(done) {
-          // TODO: uncomment, update parameter values for updateSong call
+          // TODO: uncomment, update parameter values for updateSong call and complete the assertions
           /*
           var opts = {};
           opts.songItem = new WhatApi.SongItem();
@@ -341,6 +341,26 @@
           opts.songItem.tags = ["dance","party"];
 
           instance.updateSong(opts).then(function(data) {
+            // TODO: update response assertions
+            expect(data).to.be.a(WhatApi.SongItem);
+            expect(data.id).to.be.a('string');
+            // expect(data.id).to.be("5daef72831cae99923dad6ez");
+            expect(data.title).to.be.a('string');
+            // expect(data.title).to.be("G-Eazy - Far alone");
+            expect(data.url).to.be.a('string');
+            // expect(data.url).to.be("https://youtube.com/watch?v=sxV1_Lr1yf0");
+            expect(data.dateAdded).to.be.a('string');
+            // expect(data.dateAdded).to.be("Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)");
+            {
+              let dataCtr = data.tags;
+              expect(dataCtr).to.be.an(Array);
+              expect(dataCtr).to.not.be.empty();
+              for (let p in dataCtr) {
+                let data = dataCtr[p];
+                expect(data).to.be.a('string');
+                // expect(data).to.be("");
+              }
+            }
 
             done();
           }, function(error) {
