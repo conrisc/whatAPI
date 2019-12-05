@@ -373,20 +373,20 @@ exports.updateSong = function(songItem) {
 				const correctTags = tagItems.map(tagItem => tagItem._id);
 				const collection = db.collection('songs');
 				console.log('New song to update', songItem);
-				collection.updateOne(
+
+				collection.findOneAndUpdate(
 					{ _id: new ObjectId(songItem.id) },
 					{ $set: { title: songItem.title, url: songItem.url, tags: correctTags} },
-					function (err, r) {
-						if (err) {
-							console.log('Error while updating song: ', err)
-							reject(err);
-						}
-						else {
-							console.log('Song updated, modifiedCount:', r.modifiedCount);
-							resolve();
-						}
-					}
+					{ returnOriginal: false }
 				)
+					.then(result => {
+						console.log('Song updated, updated songItem:', result.value);
+						resolve();
+					})
+					.catch(error => {
+						console.log('Error while updating song: ', error)
+						reject(err);
+					});
 			}
 		}
 
