@@ -381,7 +381,7 @@ exports.updateSong = function(songItem) {
 				)
 					.then(result => {
 						console.log('Song updated, updated songItem:', result.value);
-						resolve();
+						resolve(result.value);
 					})
 					.catch(error => {
 						console.log('Error while updating song: ', error)
