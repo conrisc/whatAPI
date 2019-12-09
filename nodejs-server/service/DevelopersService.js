@@ -370,7 +370,7 @@ exports.updateSong = function(songItem) {
 
 			function updateSongWithCorrectData(error, tagItems) {
 				if (error) reject(error);
-				const correctTags = tagItems.map(tagItem => tagItem._id);
+				const correctTags = tagItems.map(tagItem => tagItem._id.toHexString());
 				const collection = db.collection('songs');
 				console.log('New song to update', songItem);
 
