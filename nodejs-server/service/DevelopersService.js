@@ -167,7 +167,7 @@ exports.removeSong = function(id) {
     DBService.getDB()
       .then(removeSong);
 
-    function removeSong() {
+    function removeSong(db) {
 			const collection = db.collection('songs');
 
 			collection.deleteOne({ _id: new ObjectId(id) }, (err, r) => {
