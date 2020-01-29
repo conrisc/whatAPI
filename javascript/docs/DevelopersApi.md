@@ -394,7 +394,8 @@ let opts = {
   'skip': 56, // Number | number of records to skip for pagination
   'limit': 56, // Number | maximum number of records to return
   'title': "title_example", // String | a phrase song's title must contain
-  'tags': ["tags_example"] // [String] | tags which song must contain
+  'tags': ["tags_example"], // [String] | tags which song must contain
+  'sort': "sort_example" // String | type of sort to use
 };
 apiInstance.searchSong(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -413,6 +414,7 @@ Name | Type | Description  | Notes
  **limit** | **Number**| maximum number of records to return | [optional] 
  **title** | **String**| a phrase song's title must contain | [optional] 
  **tags** | [**[String]**](String.md)| tags which song must contain | [optional] 
+ **sort** | **String**| type of sort to use | [optional] 
 
 ### Return type
 

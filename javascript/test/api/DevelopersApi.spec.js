@@ -237,6 +237,7 @@
           opts.limit = 56;
           opts.title = "title_example";
           opts.tags = ["tags_example"];
+          opts.sort = "sort_example";
 
           instance.searchSong(opts).then(function(data) {
             // TODO: update response assertions
