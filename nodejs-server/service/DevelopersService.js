@@ -257,11 +257,21 @@ exports.searchNote = function(id,skip,limit) {
  * limit Integer maximum number of records to return (optional)
  * returns List
  **/
-exports.searchSong = function(id,skip,limit,title,tags) {
-	const data = {}
+exports.searchSong = function(id,skip,limit,title,tags,sort) {
+	const data = {};
 	if (id) data._id = new ObjectId(id);
 	if (title) data.title = { $regex: title, $options: 'i' };
 	if (tags && tags.length > 0) data.tags = { $in: tags };
+
+	const sortData = {};
+	switch(sort) {
+		case 'title_asc':
+			sortData.title = 1;
+			break;
+		case 'title_desc':
+			sortData.title = -1;
+			break;
+	}
 
   return new Promise(function(resolve, reject) {
 		DBService.getDB()
@@ -269,7 +279,10 @@ exports.searchSong = function(id,skip,limit,title,tags) {
 
 		function findSong(db) {
 			const collection = db.collection('songs');
-			collection.find(data).skip(skip).limit(limit).toArray(log);
+			if (sort !== 'random')
+				collection.find(data).sort(sortData).skip(skip).limit(limit).toArray(log);
+			else
+				collection.aggregate([{ $match: data }, { $sample: {size: limit} }]).toArray(log);
 		}
 
 		function log(err, docs) {
