@@ -170,6 +170,11 @@ paths:
         items:
           type: "string"
         collectionFormat: "multi"
+      - name: "sort"
+        in: "query"
+        description: "type of sort to use"
+        required: false
+        type: "string"
       responses:
         "200":
           description: "search result matching criteria"
