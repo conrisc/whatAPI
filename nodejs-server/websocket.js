@@ -46,10 +46,9 @@ function injectConfiguration(wss) {
         sendMessage(JSON.stringify(response), ws);
     }
 
-    wss.on('connection', function (ws, request, client) {
+    wss.on('connection', function (ws, request) {
         ws.isAlive = true;
-        console.log('New connection for user: ', request.connection);
-        console.log('With headers:', request.headers);
+        ws.ip = request.connection.remoteAddress;
 
         ws.on('message', function(message) {
             console.log('ws <message>: ', message);
@@ -85,7 +84,7 @@ function injectConfiguration(wss) {
         });
         const data = {
             type: dataTypes.CLIENTS_INFO,
-            clients: clients.map(ws => ws.name)
+            clients: clients.map(ws => ({ name: ws.name, ip: ws.ip }))
         };
         clients.forEach(ws => {
             ws.isAlive = false;
