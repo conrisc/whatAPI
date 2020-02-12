@@ -24,29 +24,6 @@ function injectWebSocket(server) {
 
 function injectConfiguration(wss) {
 
-    const sendMessage = (msg, ws) => {
-        clients.forEach((client) => {
-            if (client != ws) {
-                client.send(msg)
-            }
-        });
-    }
-
-    const addClientToChat = (dataFromClient, ws) => {
-        ws.name = randName();
-        clients.push(ws);
-        ws.send(JSON.stringify({ type: dataTypes.JOIN, name: ws.name }));
-        sendClientsInfo(gatherClientsInfo(), ws);
-    }
-
-    const handleNewMessage = (dataFromClient, ws) => {
-        const response = {
-            ...dataFromClient,
-        }
-
-        sendMessage(JSON.stringify(response), ws);
-    }
-
     wss.on('connection', function (ws, request) {
         ws.isAlive = true;
         ws.ip = request.connection.remoteAddress;
@@ -72,11 +49,6 @@ function injectConfiguration(wss) {
         ws.on(dataTypes.PONG, heartbeat);
     });
 
-    function heartbeat() {
-        console.log('Got pong from:', this.name);
-        this.isAlive = true;
-    }
-
     setInterval(() => {
         clients = clients.filter(ws => {
             if (!ws.isAlive)
@@ -87,9 +59,44 @@ function injectConfiguration(wss) {
         clients.forEach(ws => {
             ws.isAlive = false;
             ws.ping();
-            sendClientsInfo(clientsInfo, ws);
+            sendMessage(clientsInfo, ws);
         });
     }, 30000);
+}
+
+function heartbeat() {
+    console.log('Got pong from:', this.name);
+    this.isAlive = true;
+}
+
+function addClientToChat (dataFromClient, ws) {
+    ws.name = randName();
+    clients.push(ws);
+    sendMessage({ type: dataTypes.JOIN, name: ws.name }, ws);
+    sendMessage(gatherClientsInfo(), ws);
+}
+
+function broadcastMessage(data, ws, targets = []) {
+    const targetClients = targets.length > 0 ?
+        clients.filter(client => !!targets.find(targetName => targetName === client.name)) :
+        clients;
+    targetClients.forEach((client) => {
+        if (client != ws) {
+            sendMessage(data, client);
+        }
+    });
+}
+
+function sendMessage(data, ws) {
+    ws.send(JSON.stringify(data));
+}
+
+function handleNewMessage (dataFromClient, ws) {
+    const response = {
+        ...dataFromClient,
+    }
+
+    broadcastMessage(response, ws, dataFromClient.targets);
 }
 
 function gatherClientsInfo() {
@@ -98,10 +105,6 @@ function gatherClientsInfo() {
         clients: clients.map(ws => ({ name: ws.name, ip: ws.ip }))
     };
     return data;
-}
-
-function sendClientsInfo(data, ws) {
-    ws.send(JSON.stringify(data));
 }
 
 function randName() {
