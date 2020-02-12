@@ -36,6 +36,7 @@ function injectConfiguration(wss) {
         ws.name = randName();
         clients.push(ws);
         ws.send(JSON.stringify({ type: dataTypes.JOIN, name: ws.name }));
+        sendClientsInfo(gatherClientsInfo(), ws);
     }
 
     const handleNewMessage = (dataFromClient, ws) => {
@@ -82,16 +83,21 @@ function injectConfiguration(wss) {
                 ws.terminate();
             return ws.isAlive;
         });
-        const data = {
-            type: dataTypes.CLIENTS_INFO,
-            clients: clients.map(ws => ({ name: ws.name, ip: ws.ip }))
-        };
+        const clientsInfo = gatherClientsInfo();
         clients.forEach(ws => {
             ws.isAlive = false;
             ws.ping();
-            sendClientsInfo(data, ws);
+            sendClientsInfo(clientsInfo, ws);
         });
     }, 30000);
+}
+
+function gatherClientsInfo() {
+    const data = {
+        type: dataTypes.CLIENTS_INFO,
+        clients: clients.map(ws => ({ name: ws.name, ip: ws.ip }))
+    };
+    return data;
 }
 
 function sendClientsInfo(data, ws) {
