@@ -8,6 +8,7 @@ const dataTypes = {
     VOLUME_UP: 'volume_up',
     VOLUME_DOWN: 'volume_down',
     LOAD_VIDEO: 'load_video',
+    PLAYER_STATE: 'player_state',
     PING: 'ping',
     PONG: 'pong',
     CLIENTS_INFO: 'clients_info'
@@ -41,6 +42,7 @@ function injectConfiguration(wss) {
                 case dataTypes.VOLUME_UP:
                 case dataTypes.VOLUME_DOWN:
                 case dataTypes.LOAD_VIDEO:
+                case dataTypes.PLAYER_STATE:
                 default:
                     handleNewMessage(dataFromClient, ws);
             }
@@ -94,6 +96,7 @@ function sendMessage(data, ws) {
 function handleNewMessage (dataFromClient, ws) {
     const response = {
         ...dataFromClient,
+        origin: ws.name
     }
 
     broadcastMessage(response, ws, dataFromClient.targets);
