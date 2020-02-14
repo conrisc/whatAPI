@@ -43,8 +43,10 @@ function injectConfiguration(wss) {
                 case dataTypes.VOLUME_DOWN:
                 case dataTypes.LOAD_VIDEO:
                 case dataTypes.PLAYER_STATE:
-                default:
                     handleNewMessage(dataFromClient, ws);
+                    break;
+                default:
+                    break;
             }
         });
 
