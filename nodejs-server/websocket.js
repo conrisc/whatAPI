@@ -5,8 +5,9 @@ const dataTypes = {
     JOIN: 'join',
     PLAY: 'play',
     PAUSE: 'pause',
-    VOLUME_UP: 'volume_up',
-    VOLUME_DOWN: 'volume_down',
+    NEXT_SONG: 'next_song',
+    PREV_SONG: 'prev_song',
+    SET_VOLUME: 'set_volume',
     LOAD_VIDEO: 'load_video',
     PLAYER_STATE: 'player_state',
     PING: 'ping',
@@ -39,8 +40,9 @@ function injectConfiguration(wss) {
                 case dataTypes.NEW_MESSAGE:
                 case dataTypes.PLAY:
                 case dataTypes.PAUSE:
-                case dataTypes.VOLUME_UP:
-                case dataTypes.VOLUME_DOWN:
+                case dataTypes.NEXT_SONG:
+                case dataTypes.PREV_SONG:
+                case dataTypes.SET_VOLUME:
                 case dataTypes.LOAD_VIDEO:
                 case dataTypes.PLAYER_STATE:
                     handleNewMessage(dataFromClient, ws);
