@@ -65,8 +65,10 @@ function injectConfiguration(wss) {
 
     setInterval(() => {
         clients = clients.filter(ws => {
-            if (!ws.isAlive)
+            if (!ws.isAlive) {
+                console.log(`Disconnecting [${ws.name}] ${ws.clientInfo.userAgent.parsed}`);
                 ws.terminate();
+            }
             return ws.isAlive;
         });
         const clientsInfo = gatherClientsInfo();
@@ -85,6 +87,7 @@ function heartbeat() {
 
 function addClientToChat (dataFromClient, ws) {
     ws.name = randName();
+    console.log(`Connecting [${ws.name}] ${ws.clientInfo.userAgent.parsed}`);
     clients.push(ws);
     sendMessage({ type: dataTypes.JOIN, name: ws.name }, ws);
     sendMessage(gatherClientsInfo(), ws);
