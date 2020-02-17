@@ -1,4 +1,5 @@
 const WebSocket = require('ws');
+const useragent = require('useragent');
 
 const dataTypes = {
     NEW_MESSAGE: 'new_message',
@@ -28,7 +29,14 @@ function injectConfiguration(wss) {
 
     wss.on('connection', function (ws, request) {
         ws.isAlive = true;
-        ws.ip = request.connection.remoteAddress;
+        const userAgent = request.headers['user-agent'];
+        const parsedUserAgent = useragent.parse(userAgent);
+        ws.clientInfo = {
+            userAgent: {
+                parsed: parsedUserAgent.os.family + ' (' + parsedUserAgent.family + ')',
+                raw: userAgent
+            }
+        };
 
         ws.on('message', function(message) {
             console.log('ws <message>: ', message);
@@ -67,11 +75,11 @@ function injectConfiguration(wss) {
             ws.ping();
             sendMessage(clientsInfo, ws);
         });
-    }, 30000);
+    }, 20000);
 }
 
 function heartbeat() {
-    console.log('Got pong from:', this.name);
+    console.log('Got pong from:', this.name, this.clientInfo.userAgent.parsed);
     this.isAlive = true;
 }
 
@@ -109,7 +117,7 @@ function handleNewMessage (dataFromClient, ws) {
 function gatherClientsInfo() {
     const data = {
         type: dataTypes.CLIENTS_INFO,
-        clients: clients.map(ws => ({ name: ws.name, ip: ws.ip }))
+        clients: clients.map(ws => ({ name: ws.name, ...ws.clientInfo}))
     };
     return data;
 }

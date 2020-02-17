@@ -289,7 +289,7 @@ exports.searchSong = function(id,skip,limit,title,tags,sort) {
 			if (err)
 				console.log(err);
 			else {
-				console.log('Found: ', docs);
+				console.log(`Found ${docs.length} songs`);
 				resolve(docs);
 			}
 		}
