@@ -36,6 +36,17 @@ module.exports.addTag = function addTag (req, res, next) {
     });
 };
 
+module.exports.addUser = function addUser (req, res, next) {
+  var user = req.swagger.params['User'].value;
+  Developers.addUser(user)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.getYtItems = function getYtItems (req, res, next) {
   var title = req.swagger.params['title'].value;
   var limit = req.swagger.params['limit'].value;
@@ -73,6 +84,17 @@ module.exports.removeSong = function removeSong (req, res, next) {
 module.exports.removeTag = function removeTag (req, res, next) {
   var id = req.swagger.params['id'].value;
   Developers.removeTag(id)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.removeUser = function removeUser (req, res, next) {
+  var id = req.swagger.params['id'].value;
+  Developers.removeUser(id)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -123,6 +145,20 @@ module.exports.searchTag = function searchTag (req, res, next) {
     });
 };
 
+module.exports.searchUser = function searchUser (req, res, next) {
+  var id = req.swagger.params['id'].value;
+  var skip = req.swagger.params['skip'].value;
+  var limit = req.swagger.params['limit'].value;
+  var email = req.swagger.params['email'].value;
+  Developers.searchUser(id,skip,limit,email)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.updateNote = function updateNote (req, res, next) {
   var noteItem = req.swagger.params['NoteItem'].value;
   Developers.updateNote(noteItem)
@@ -148,6 +184,17 @@ module.exports.updateSong = function updateSong (req, res, next) {
 module.exports.updateTag = function updateTag (req, res, next) {
   var tagItem = req.swagger.params['TagItem'].value;
   Developers.updateTag(tagItem)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.updateUser = function updateUser (req, res, next) {
+  var user = req.swagger.params['User'].value;
+  Developers.updateUser(user)
     .then(function (response) {
       utils.writeJson(res, response);
     })

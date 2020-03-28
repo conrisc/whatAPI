@@ -394,12 +394,128 @@ paths:
         "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
+  /user:
+    get:
+      tags:
+      - "developers"
+      summary: "Search users"
+      description: "By passing in the appropriate options, you can search for\navailable\
+        \ user in the system\n"
+      operationId: "searchUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "user id"
+        required: false
+        type: "string"
+      - name: "skip"
+        in: "query"
+        description: "number of records to skip for pagination"
+        required: false
+        type: "integer"
+        minimum: 0
+        format: "int32"
+      - name: "limit"
+        in: "query"
+        description: "maximum number of records to return"
+        required: false
+        type: "integer"
+        maximum: 100.0
+        minimum: 0
+        format: "int32"
+      - name: "email"
+        in: "query"
+        description: "email of wanted user"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "search result matching criteria"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        "400":
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
+    post:
+      tags:
+      - "developers"
+      summary: "adds a user"
+      description: "Adds an item to the database"
+      operationId: "addUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "text/plain"
+      parameters:
+      - in: "body"
+        name: "User"
+        description: "User to add"
+        required: false
+        schema:
+          $ref: "#/definitions/User_post"
+      responses:
+        "201":
+          description: "user created"
+          schema:
+            type: "string"
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: "user with given email already exists"
+      x-swagger-router-controller: "Developers"
+    put:
+      tags:
+      - "developers"
+      summary: "updates a user item"
+      description: "Updates an item in the database"
+      operationId: "updateUser"
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "User"
+        description: "User to update"
+        required: false
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "item updated"
+          schema:
+            type: "string"
+        "400":
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
+    delete:
+      tags:
+      - "developers"
+      summary: "removes a user"
+      description: "Removes an item from the database"
+      operationId: "removeUser"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "user id"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "user removed"
+        "400":
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
 definitions:
+  User:
+    type: "object"
   NoteItem:
     type: "object"
     required:
     - "creationDate"
-    - "text"
+    - "email"
     properties:
       _id:
         type: "string"
@@ -407,13 +523,33 @@ definitions:
       creationDate:
         type: "string"
         example: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
-      text:
+      email:
         type: "string"
-        example: "Some note"
+        example: "mylogin@service.com"
     example:
       _id: "4daef72846cae99923dfd6ez"
-      text: "Some note"
       creationDate: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
+      email: "mylogin@service.com"
+  User_post:
+    type: "object"
+    required:
+    - "creationDate"
+    - "email"
+    - "password"
+    properties:
+      creationDate:
+        type: "string"
+        example: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
+      email:
+        type: "string"
+        example: "mylogin@service.com"
+      password:
+        type: "string"
+        example: "pa$$word"
+    example:
+      password: "pa$$word"
+      creationDate: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
+      email: "mylogin@service.com"
   SongItem:
     type: "object"
     required:
