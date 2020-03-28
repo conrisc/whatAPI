@@ -17,57 +17,59 @@
 import {ApiClient} from '../ApiClient';
 
 /**
- * The NoteItem model module.
- * @module model/NoteItem
+ * The UserPost model module.
+ * @module model/UserPost
  * @version 1.2.1
  */
-export class NoteItem {
+export class UserPost {
   /**
-   * Constructs a new <code>NoteItem</code>.
-   * @alias module:model/NoteItem
+   * Constructs a new <code>UserPost</code>.
+   * @alias module:model/UserPost
    * @class
    * @param creationDate {String} 
    * @param email {String} 
+   * @param password {String} 
    */
-  constructor(creationDate, email) {
+  constructor(creationDate, email, password) {
     this.creationDate = creationDate;
     this.email = email;
+    this.password = password;
   }
 
   /**
-   * Constructs a <code>NoteItem</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>UserPost</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/NoteItem} obj Optional instance to populate.
-   * @return {module:model/NoteItem} The populated <code>NoteItem</code> instance.
+   * @param {module:model/UserPost} obj Optional instance to populate.
+   * @return {module:model/UserPost} The populated <code>UserPost</code> instance.
    */
   static constructFromObject(data, obj) {
     if (data) {
-      obj = obj || new NoteItem();
-      if (data.hasOwnProperty('_id'))
-        obj.id = ApiClient.convertToType(data['_id'], 'String');
+      obj = obj || new UserPost();
       if (data.hasOwnProperty('creationDate'))
         obj.creationDate = ApiClient.convertToType(data['creationDate'], 'String');
       if (data.hasOwnProperty('email'))
         obj.email = ApiClient.convertToType(data['email'], 'String');
+      if (data.hasOwnProperty('password'))
+        obj.password = ApiClient.convertToType(data['password'], 'String');
     }
     return obj;
   }
 }
 
 /**
- * @member {String} id
- */
-NoteItem.prototype.id = undefined;
-
-/**
  * @member {String} creationDate
  */
-NoteItem.prototype.creationDate = undefined;
+UserPost.prototype.creationDate = undefined;
 
 /**
  * @member {String} email
  */
-NoteItem.prototype.email = undefined;
+UserPost.prototype.email = undefined;
+
+/**
+ * @member {String} password
+ */
+UserPost.prototype.password = undefined;
 
 

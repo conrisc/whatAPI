@@ -93,16 +93,20 @@ Class | Method | HTTP request | Description
 *WhatApi.DevelopersApi* | [**addNote**](docs/DevelopersApi.md#addNote) | **POST** /note | adds a note item
 *WhatApi.DevelopersApi* | [**addSong**](docs/DevelopersApi.md#addSong) | **POST** /song | adds a song item
 *WhatApi.DevelopersApi* | [**addTag**](docs/DevelopersApi.md#addTag) | **POST** /tag | adds a tag item
+*WhatApi.DevelopersApi* | [**addUser**](docs/DevelopersApi.md#addUser) | **POST** /user | adds a user
 *WhatApi.DevelopersApi* | [**getYtItems**](docs/DevelopersApi.md#getYtItems) | **GET** /ytitems | Get data
 *WhatApi.DevelopersApi* | [**removeNote**](docs/DevelopersApi.md#removeNote) | **DELETE** /note | removes a note item
 *WhatApi.DevelopersApi* | [**removeSong**](docs/DevelopersApi.md#removeSong) | **DELETE** /song | removes a song item
 *WhatApi.DevelopersApi* | [**removeTag**](docs/DevelopersApi.md#removeTag) | **DELETE** /tag | removes a song item
+*WhatApi.DevelopersApi* | [**removeUser**](docs/DevelopersApi.md#removeUser) | **DELETE** /user | removes a user
 *WhatApi.DevelopersApi* | [**searchNote**](docs/DevelopersApi.md#searchNote) | **GET** /note | searches note
 *WhatApi.DevelopersApi* | [**searchSong**](docs/DevelopersApi.md#searchSong) | **GET** /song | Search song
 *WhatApi.DevelopersApi* | [**searchTag**](docs/DevelopersApi.md#searchTag) | **GET** /tag | Search tag
+*WhatApi.DevelopersApi* | [**searchUser**](docs/DevelopersApi.md#searchUser) | **GET** /user | Search users
 *WhatApi.DevelopersApi* | [**updateNote**](docs/DevelopersApi.md#updateNote) | **PUT** /note | updates a note item
 *WhatApi.DevelopersApi* | [**updateSong**](docs/DevelopersApi.md#updateSong) | **PUT** /song | updates a song item
 *WhatApi.DevelopersApi* | [**updateTag**](docs/DevelopersApi.md#updateTag) | **PUT** /tag | updates a tag item
+*WhatApi.DevelopersApi* | [**updateUser**](docs/DevelopersApi.md#updateUser) | **PUT** /user | updates a user item
 
 
 ## Documentation for Models
@@ -110,6 +114,8 @@ Class | Method | HTTP request | Description
  - [WhatApi.NoteItem](docs/NoteItem.md)
  - [WhatApi.SongItem](docs/SongItem.md)
  - [WhatApi.TagItem](docs/TagItem.md)
+ - [WhatApi.User](docs/User.md)
+ - [WhatApi.UserPost](docs/UserPost.md)
  - [WhatApi.YtVideoItem](docs/YtVideoItem.md)
 
 

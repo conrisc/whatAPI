@@ -7,16 +7,20 @@ Method | HTTP request | Description
 [**addNote**](DevelopersApi.md#addNote) | **POST** /note | adds a note item
 [**addSong**](DevelopersApi.md#addSong) | **POST** /song | adds a song item
 [**addTag**](DevelopersApi.md#addTag) | **POST** /tag | adds a tag item
+[**addUser**](DevelopersApi.md#addUser) | **POST** /user | adds a user
 [**getYtItems**](DevelopersApi.md#getYtItems) | **GET** /ytitems | Get data
 [**removeNote**](DevelopersApi.md#removeNote) | **DELETE** /note | removes a note item
 [**removeSong**](DevelopersApi.md#removeSong) | **DELETE** /song | removes a song item
 [**removeTag**](DevelopersApi.md#removeTag) | **DELETE** /tag | removes a song item
+[**removeUser**](DevelopersApi.md#removeUser) | **DELETE** /user | removes a user
 [**searchNote**](DevelopersApi.md#searchNote) | **GET** /note | searches note
 [**searchSong**](DevelopersApi.md#searchSong) | **GET** /song | Search song
 [**searchTag**](DevelopersApi.md#searchTag) | **GET** /tag | Search tag
+[**searchUser**](DevelopersApi.md#searchUser) | **GET** /user | Search users
 [**updateNote**](DevelopersApi.md#updateNote) | **PUT** /note | updates a note item
 [**updateSong**](DevelopersApi.md#updateSong) | **PUT** /song | updates a song item
 [**updateTag**](DevelopersApi.md#updateTag) | **PUT** /tag | updates a tag item
+[**updateUser**](DevelopersApi.md#updateUser) | **PUT** /user | updates a user item
 
 
 <a name="addNote"></a>
@@ -137,6 +141,50 @@ apiInstance.addTag(opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tagItem** | [**TagItem**](TagItem.md)| Tag item to add | [optional] 
+
+### Return type
+
+**'String'**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/plain
+
+<a name="addUser"></a>
+# **addUser**
+> 'String' addUser(opts)
+
+adds a user
+
+Adds an item to the database
+
+### Example
+```javascript
+import {WhatApi} from 'what_api';
+
+let apiInstance = new WhatApi.DevelopersApi();
+
+let opts = { 
+  'user': new WhatApi.UserPost() // UserPost | User to add
+};
+apiInstance.addUser(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user** | [**UserPost**](UserPost.md)| User to add | [optional] 
 
 ### Return type
 
@@ -327,6 +375,49 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+<a name="removeUser"></a>
+# **removeUser**
+> removeUser(id)
+
+removes a user
+
+Removes an item from the database
+
+### Example
+```javascript
+import {WhatApi} from 'what_api';
+
+let apiInstance = new WhatApi.DevelopersApi();
+
+let id = "id_example"; // String | user id
+
+apiInstance.removeUser(id).then(() => {
+  console.log('API called successfully.');
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| user id | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
 <a name="searchNote"></a>
 # **searchNote**
 > [NoteItem] searchNote(opts)
@@ -477,6 +568,56 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a name="searchUser"></a>
+# **searchUser**
+> [User] searchUser(opts)
+
+Search users
+
+By passing in the appropriate options, you can search for available user in the system 
+
+### Example
+```javascript
+import {WhatApi} from 'what_api';
+
+let apiInstance = new WhatApi.DevelopersApi();
+
+let opts = { 
+  'id': "id_example", // String | user id
+  'skip': 56, // Number | number of records to skip for pagination
+  'limit': 56, // Number | maximum number of records to return
+  'email': "email_example" // String | email of wanted user
+};
+apiInstance.searchUser(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| user id | [optional] 
+ **skip** | **Number**| number of records to skip for pagination | [optional] 
+ **limit** | **Number**| maximum number of records to return | [optional] 
+ **email** | **String**| email of wanted user | [optional] 
+
+### Return type
+
+[**[User]**](User.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a name="updateNote"></a>
 # **updateNote**
 > updateNote(opts)
@@ -599,6 +740,50 @@ Name | Type | Description  | Notes
 ### Return type
 
 null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+<a name="updateUser"></a>
+# **updateUser**
+> 'String' updateUser(opts)
+
+updates a user item
+
+Updates an item in the database
+
+### Example
+```javascript
+import {WhatApi} from 'what_api';
+
+let apiInstance = new WhatApi.DevelopersApi();
+
+let opts = { 
+  'user': new WhatApi.User() // User | User to update
+};
+apiInstance.updateUser(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user** | [**User**](User.md)| User to update | [optional] 
+
+### Return type
+
+**'String'**
 
 ### Authorization
 

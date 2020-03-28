@@ -1,10 +1,10 @@
-# WhatApi.NoteItem
+# WhatApi.UserPost
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [optional] 
 **creationDate** | **String** |  | 
 **email** | **String** |  | 
+**password** | **String** |  | 
 
 
