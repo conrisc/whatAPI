@@ -1,6 +1,7 @@
 'use strict';
 
 const ObjectId = require('mongodb').ObjectId;
+const bcrypt = require('bcrypt');
 
 const DBService = require('./DatabaseService');
 const scrape = require('./scraperService').scrape;
@@ -327,6 +328,96 @@ exports.searchTag = function(id,skip,limit) {
 			}
 		}
   });
+}
+
+exports.signInUser = function(userCredentials) {
+	return new Promise((resolve, reject) => {
+		// console.log(bcrypt.compareSync(myPlaintextPassword, hash)); // true
+		const data = {
+			email: userCredentials.email
+		};
+		DBService.getDB()
+			.then(findUser);
+
+		function findUser(db) {
+			const collection = db.collection('users');
+			collection.find(data).toArray(log);
+		}
+
+		function log(err, docs) {
+			if (err) {
+				console.log(err);
+				reject({
+					message: 'Something went wrong :('
+				});
+			}
+			else if (docs.length === 1) {
+				console.log('Found: ', docs);
+				bcrypt.compare(userCredentials.password, docs[0].hash, (err, result) => {
+					if (result) {
+						resolve({
+							message: `Signed in user ${userCredentials.email}`,
+							data: docs
+						});
+					} else {
+						reject({
+							message: 'Invalid credentials'
+						});
+					}
+				});
+			} else {
+				reject({
+					message: 'Invalid credentials'
+				});
+			}
+		}
+	});
+}
+
+exports.signUpUser = function(userCredentials) {
+	return new Promise((resolve, reject) => {
+		const saltRounds = 11;
+
+		if (userCredentials.email.length < 4) {
+			console.log('Email is too short');
+			return reject({
+				message: 'Email is too short'
+			});
+		}
+		if (userCredentials.password.length < 6) {
+			console.log('Password is too short');
+			return reject({
+				message: 'Password is too short'
+			});
+		}
+		bcrypt.hash(userCredentials.password, saltRounds, function(err, hash) {
+			const user = {
+				email: userCredentials.email,
+				hash
+			};
+
+			DBService.getDB()
+				.then((db) => insertUser(db, user));
+		});
+
+		function insertUser(db, user) {
+			const collection = db.collection('users');
+			collection.insertOne(user, function (err, r) {
+				if (err) {
+					console.log('Error while inserting user: ', err);
+					reject({
+						message: 'Error while inserting user',
+						data: err
+					});
+				} else {
+					console.log('User inserted', r.ops);
+					resolve({
+						message: `Signed up user ${userCredentials.email}`
+					})
+				}
+			});
+		}
+	});
 }
 
 
