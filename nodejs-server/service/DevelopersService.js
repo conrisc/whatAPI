@@ -2,6 +2,7 @@
 
 const ObjectId = require('mongodb').ObjectId;
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 var utils = require('../utils/writer.js');
 const DBService = require('./DatabaseService');
@@ -332,9 +333,7 @@ exports.searchTag = function(id,skip,limit) {
 }
 
 exports.signInUser = function(userCredentials) {
-	const response = new utils.ResponsePayload(200, {}, {
-		'Authorization': 'bardzo dobra autoryzacja'
-	});
+	const response = new utils.ResponsePayload(200, {}, {});
 	return new Promise((resolve, reject) => {
 		const data = {
 			email: userCredentials.email
@@ -357,11 +356,15 @@ exports.signInUser = function(userCredentials) {
 			}
 			else if (docs.length === 1) {
 				console.log('Found: ', docs);
-				bcrypt.compare(userCredentials.password, docs[0].hash, (err, result) => {
+				const userData = docs[0];
+				bcrypt.compare(userCredentials.password, userData.hash, (err, result) => {
 					if (result) {
+						const token = jwt.sign({ userId: userData._id }, 'ultra-key');
 						response.payload = {
 							message: `Signed in user ${userCredentials.email}`,
-							data: docs
+							data: {
+								authToken: token
+							}
 						};
 						resolve(response);
 					} else {
