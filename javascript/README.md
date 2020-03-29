@@ -93,7 +93,6 @@ Class | Method | HTTP request | Description
 *WhatApi.DevelopersApi* | [**addNote**](docs/DevelopersApi.md#addNote) | **POST** /note | adds a note item
 *WhatApi.DevelopersApi* | [**addSong**](docs/DevelopersApi.md#addSong) | **POST** /song | adds a song item
 *WhatApi.DevelopersApi* | [**addTag**](docs/DevelopersApi.md#addTag) | **POST** /tag | adds a tag item
-*WhatApi.DevelopersApi* | [**addUser**](docs/DevelopersApi.md#addUser) | **POST** /user | adds a user
 *WhatApi.DevelopersApi* | [**getYtItems**](docs/DevelopersApi.md#getYtItems) | **GET** /ytitems | Get data
 *WhatApi.DevelopersApi* | [**removeNote**](docs/DevelopersApi.md#removeNote) | **DELETE** /note | removes a note item
 *WhatApi.DevelopersApi* | [**removeSong**](docs/DevelopersApi.md#removeSong) | **DELETE** /song | removes a song item
@@ -103,6 +102,8 @@ Class | Method | HTTP request | Description
 *WhatApi.DevelopersApi* | [**searchSong**](docs/DevelopersApi.md#searchSong) | **GET** /song | Search song
 *WhatApi.DevelopersApi* | [**searchTag**](docs/DevelopersApi.md#searchTag) | **GET** /tag | Search tag
 *WhatApi.DevelopersApi* | [**searchUser**](docs/DevelopersApi.md#searchUser) | **GET** /user | Search users
+*WhatApi.DevelopersApi* | [**signInUser**](docs/DevelopersApi.md#signInUser) | **POST** /user/login | login user
+*WhatApi.DevelopersApi* | [**signUpUser**](docs/DevelopersApi.md#signUpUser) | **POST** /user/register | register new user
 *WhatApi.DevelopersApi* | [**updateNote**](docs/DevelopersApi.md#updateNote) | **PUT** /note | updates a note item
 *WhatApi.DevelopersApi* | [**updateSong**](docs/DevelopersApi.md#updateSong) | **PUT** /song | updates a song item
 *WhatApi.DevelopersApi* | [**updateTag**](docs/DevelopersApi.md#updateTag) | **PUT** /tag | updates a tag item

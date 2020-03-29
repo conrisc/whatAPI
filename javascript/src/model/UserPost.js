@@ -26,12 +26,10 @@ export class UserPost {
    * Constructs a new <code>UserPost</code>.
    * @alias module:model/UserPost
    * @class
-   * @param creationDate {String} 
    * @param email {String} 
    * @param password {String} 
    */
-  constructor(creationDate, email, password) {
-    this.creationDate = creationDate;
+  constructor(email, password) {
     this.email = email;
     this.password = password;
   }
@@ -46,8 +44,6 @@ export class UserPost {
   static constructFromObject(data, obj) {
     if (data) {
       obj = obj || new UserPost();
-      if (data.hasOwnProperty('creationDate'))
-        obj.creationDate = ApiClient.convertToType(data['creationDate'], 'String');
       if (data.hasOwnProperty('email'))
         obj.email = ApiClient.convertToType(data['email'], 'String');
       if (data.hasOwnProperty('password'))
@@ -56,11 +52,6 @@ export class UserPost {
     return obj;
   }
 }
-
-/**
- * @member {String} creationDate
- */
-UserPost.prototype.creationDate = undefined;
 
 /**
  * @member {String} email

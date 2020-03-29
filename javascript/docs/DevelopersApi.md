@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**addNote**](DevelopersApi.md#addNote) | **POST** /note | adds a note item
 [**addSong**](DevelopersApi.md#addSong) | **POST** /song | adds a song item
 [**addTag**](DevelopersApi.md#addTag) | **POST** /tag | adds a tag item
-[**addUser**](DevelopersApi.md#addUser) | **POST** /user | adds a user
 [**getYtItems**](DevelopersApi.md#getYtItems) | **GET** /ytitems | Get data
 [**removeNote**](DevelopersApi.md#removeNote) | **DELETE** /note | removes a note item
 [**removeSong**](DevelopersApi.md#removeSong) | **DELETE** /song | removes a song item
@@ -17,6 +16,8 @@ Method | HTTP request | Description
 [**searchSong**](DevelopersApi.md#searchSong) | **GET** /song | Search song
 [**searchTag**](DevelopersApi.md#searchTag) | **GET** /tag | Search tag
 [**searchUser**](DevelopersApi.md#searchUser) | **GET** /user | Search users
+[**signInUser**](DevelopersApi.md#signInUser) | **POST** /user/login | login user
+[**signUpUser**](DevelopersApi.md#signUpUser) | **POST** /user/register | register new user
 [**updateNote**](DevelopersApi.md#updateNote) | **PUT** /note | updates a note item
 [**updateSong**](DevelopersApi.md#updateSong) | **PUT** /song | updates a song item
 [**updateTag**](DevelopersApi.md#updateTag) | **PUT** /tag | updates a tag item
@@ -141,50 +142,6 @@ apiInstance.addTag(opts).then((data) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tagItem** | [**TagItem**](TagItem.md)| Tag item to add | [optional] 
-
-### Return type
-
-**'String'**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: text/plain
-
-<a name="addUser"></a>
-# **addUser**
-> 'String' addUser(opts)
-
-adds a user
-
-Adds an item to the database
-
-### Example
-```javascript
-import {WhatApi} from 'what_api';
-
-let apiInstance = new WhatApi.DevelopersApi();
-
-let opts = { 
-  'user': new WhatApi.UserPost() // UserPost | User to add
-};
-apiInstance.addUser(opts).then((data) => {
-  console.log('API called successfully. Returned data: ' + data);
-}, (error) => {
-  console.error(error);
-});
-
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user** | [**UserPost**](UserPost.md)| User to add | [optional] 
 
 ### Return type
 
@@ -617,6 +574,94 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+<a name="signInUser"></a>
+# **signInUser**
+> 'String' signInUser(opts)
+
+login user
+
+signs in user
+
+### Example
+```javascript
+import {WhatApi} from 'what_api';
+
+let apiInstance = new WhatApi.DevelopersApi();
+
+let opts = { 
+  'usersCredentials': new WhatApi.UserPost() // UserPost | User's credentials
+};
+apiInstance.signInUser(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **usersCredentials** | [**UserPost**](UserPost.md)| User's credentials | [optional] 
+
+### Return type
+
+**'String'**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/plain
+
+<a name="signUpUser"></a>
+# **signUpUser**
+> 'String' signUpUser(opts)
+
+register new user
+
+signs up new user
+
+### Example
+```javascript
+import {WhatApi} from 'what_api';
+
+let apiInstance = new WhatApi.DevelopersApi();
+
+let opts = { 
+  'usersCredentials': new WhatApi.UserPost() // UserPost | User's credentials
+};
+apiInstance.signUpUser(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **usersCredentials** | [**UserPost**](UserPost.md)| User's credentials | [optional] 
+
+### Return type
+
+**'String'**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/plain
 
 <a name="updateNote"></a>
 # **updateNote**

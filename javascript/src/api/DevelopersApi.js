@@ -187,54 +187,6 @@ export class DevelopersApi {
 
 
     /**
-     * adds a user
-     * Adds an item to the database
-     * @param {Object} opts Optional parameters
-     * @param {module:model/UserPost} opts.user User to add
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link 'String'} and HTTP response
-     */
-    addUserWithHttpInfo(opts) {
-      opts = opts || {};
-      let postBody = opts['user'];
-
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = [];
-      let contentTypes = ['application/json'];
-      let accepts = ['text/plain'];
-      let returnType = 'String';
-
-      return this.apiClient.callApi(
-        '/user', 'POST',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      );
-    }
-
-    /**
-     * adds a user
-     * Adds an item to the database
-     * @param {Object} opts Optional parameters
-     * @param {module:model/UserPost} opts.user User to add
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link 'String'}
-     */
-    addUser(opts) {
-      return this.addUserWithHttpInfo(opts)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
-    }
-
-
-    /**
      * Get data
      * By passing in url, you can fetch data 
      * @param {String} title title to search
@@ -721,6 +673,102 @@ export class DevelopersApi {
      */
     searchUser(opts) {
       return this.searchUserWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * login user
+     * signs in user
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UserPost} opts.usersCredentials User's credentials
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link 'String'} and HTTP response
+     */
+    signInUserWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['usersCredentials'];
+
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = ['application/json'];
+      let accepts = ['text/plain'];
+      let returnType = 'String';
+
+      return this.apiClient.callApi(
+        '/user/login', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType
+      );
+    }
+
+    /**
+     * login user
+     * signs in user
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UserPost} opts.usersCredentials User's credentials
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link 'String'}
+     */
+    signInUser(opts) {
+      return this.signInUserWithHttpInfo(opts)
+        .then(function(response_and_data) {
+          return response_and_data.data;
+        });
+    }
+
+
+    /**
+     * register new user
+     * signs up new user
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UserPost} opts.usersCredentials User's credentials
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link 'String'} and HTTP response
+     */
+    signUpUserWithHttpInfo(opts) {
+      opts = opts || {};
+      let postBody = opts['usersCredentials'];
+
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = ['application/json'];
+      let accepts = ['text/plain'];
+      let returnType = 'String';
+
+      return this.apiClient.callApi(
+        '/user/register', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType
+      );
+    }
+
+    /**
+     * register new user
+     * signs up new user
+     * @param {Object} opts Optional parameters
+     * @param {module:model/UserPost} opts.usersCredentials User's credentials
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link 'String'}
+     */
+    signUpUser(opts) {
+      return this.signUpUserWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

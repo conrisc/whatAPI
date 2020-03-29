@@ -41,12 +41,6 @@
         expect(instance).to.be.a(WhatApi.UserPost);
       });
 
-      it('should have the property creationDate (base name: "creationDate")', function() {
-        // TODO: update the code to test the property creationDate
-        expect(instance).to.have.property('creationDate');
-        // expect(instance.creationDate).to.be(expectedValueLiteral);
-      });
-
       it('should have the property email (base name: "email")', function() {
         // TODO: update the code to test the property email
         expect(instance).to.have.property('email');

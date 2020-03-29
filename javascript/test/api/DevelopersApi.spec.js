@@ -109,30 +109,6 @@
           done();
         });
       });
-      describe('addUser', function() {
-        it('should call addUser successfully', function(done) {
-          // TODO: uncomment, update parameter values for addUser call and complete the assertions
-          /*
-          var opts = {};
-          opts.user = new WhatApi.UserPost();
-          opts.user.creationDate = "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)";
-          opts.user.email = "mylogin@service.com";
-          opts.user.password = "pa$$word";
-
-          instance.addUser(opts).then(function(data) {
-            // TODO: update response assertions
-            expect(data).to.be.a('string');
-            // expect(data).to.be(null);
-
-            done();
-          }, function(error) {
-            done(error);
-          });
-          */
-          // TODO: uncomment and complete method invocation above, then delete this line and the next:
-          done();
-        });
-      });
       describe('getYtItems', function() {
         it('should call getYtItems successfully', function(done) {
           // TODO: uncomment, update parameter values for getYtItems call and complete the assertions
@@ -368,6 +344,52 @@
               let data = dataCtr[p];
               expect(data).to.be.a(WhatApi.User);
             }
+
+            done();
+          }, function(error) {
+            done(error);
+          });
+          */
+          // TODO: uncomment and complete method invocation above, then delete this line and the next:
+          done();
+        });
+      });
+      describe('signInUser', function() {
+        it('should call signInUser successfully', function(done) {
+          // TODO: uncomment, update parameter values for signInUser call and complete the assertions
+          /*
+          var opts = {};
+          opts.usersCredentials = new WhatApi.UserPost();
+          opts.usersCredentials.email = "mylogin@service.com";
+          opts.usersCredentials.password = "pa$$word";
+
+          instance.signInUser(opts).then(function(data) {
+            // TODO: update response assertions
+            expect(data).to.be.a('string');
+            // expect(data).to.be(null);
+
+            done();
+          }, function(error) {
+            done(error);
+          });
+          */
+          // TODO: uncomment and complete method invocation above, then delete this line and the next:
+          done();
+        });
+      });
+      describe('signUpUser', function() {
+        it('should call signUpUser successfully', function(done) {
+          // TODO: uncomment, update parameter values for signUpUser call and complete the assertions
+          /*
+          var opts = {};
+          opts.usersCredentials = new WhatApi.UserPost();
+          opts.usersCredentials.email = "mylogin@service.com";
+          opts.usersCredentials.password = "pa$$word";
+
+          instance.signUpUser(opts).then(function(data) {
+            // TODO: update response assertions
+            expect(data).to.be.a('string');
+            // expect(data).to.be(null);
 
             done();
           }, function(error) {
