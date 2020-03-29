@@ -573,12 +573,12 @@ export class DevelopersApi {
      * login user
      * signs in user
      * @param {Object} opts Optional parameters
-     * @param {module:model/UserPost} opts.usersCredentials User's credentials
+     * @param {module:model/UserPost} opts.userCredentials User's credentials
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link 'String'} and HTTP response
      */
     signInUserWithHttpInfo(opts) {
       opts = opts || {};
-      let postBody = opts['usersCredentials'];
+      let postBody = opts['userCredentials'];
 
 
       let pathParams = {
@@ -606,7 +606,7 @@ export class DevelopersApi {
      * login user
      * signs in user
      * @param {Object} opts Optional parameters
-     * @param {module:model/UserPost} opts.usersCredentials User's credentials
+     * @param {module:model/UserPost} opts.userCredentials User's credentials
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link 'String'}
      */
     signInUser(opts) {
@@ -621,12 +621,12 @@ export class DevelopersApi {
      * register new user
      * signs up new user
      * @param {Object} opts Optional parameters
-     * @param {module:model/UserPost} opts.usersCredentials User's credentials
+     * @param {module:model/UserPost} opts.userCredentials User's credentials
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link 'String'} and HTTP response
      */
     signUpUserWithHttpInfo(opts) {
       opts = opts || {};
-      let postBody = opts['usersCredentials'];
+      let postBody = opts['userCredentials'];
 
 
       let pathParams = {
@@ -654,7 +654,7 @@ export class DevelopersApi {
      * register new user
      * signs up new user
      * @param {Object} opts Optional parameters
-     * @param {module:model/UserPost} opts.usersCredentials User's credentials
+     * @param {module:model/UserPost} opts.userCredentials User's credentials
      * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link 'String'}
      */
     signUpUser(opts) {

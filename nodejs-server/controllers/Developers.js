@@ -124,8 +124,8 @@ module.exports.searchTag = function searchTag (req, res, next) {
 };
 
 module.exports.signInUser = function signInUser (req, res, next) {
-  var user&#39;s credentials = req.swagger.params['User&#39;s credentials'].value;
-  Developers.signInUser(user&#39;s credentials)
+  var userCredentials = req.swagger.params['userCredentials'].value;
+  Developers.signInUser(userCredentials)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -135,8 +135,8 @@ module.exports.signInUser = function signInUser (req, res, next) {
 };
 
 module.exports.signUpUser = function signUpUser (req, res, next) {
-  var user&#39;s credentials = req.swagger.params['User&#39;s credentials'].value;
-  Developers.signUpUser(user&#39;s credentials)
+  var userCredentials = req.swagger.params['userCredentials'].value;
+  Developers.signUpUser(userCredentials)
     .then(function (response) {
       utils.writeJson(res, response);
     })
