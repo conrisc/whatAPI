@@ -407,7 +407,7 @@ paths:
       - "text/plain"
       parameters:
       - in: "body"
-        name: "User's credentials"
+        name: "userCredentials"
         description: "User's credentials"
         required: false
         schema:
@@ -435,7 +435,7 @@ paths:
       - "text/plain"
       parameters:
       - in: "body"
-        name: "User's credentials"
+        name: "userCredentials"
         description: "User's credentials"
         required: false
         schema:
