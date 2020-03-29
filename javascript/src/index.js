@@ -16,6 +16,7 @@
 
 import {ApiClient} from './ApiClient';
 import {NoteItem} from './model/NoteItem';
+import {SimpleResponse} from './model/SimpleResponse';
 import {SongItem} from './model/SongItem';
 import {TagItem} from './model/TagItem';
 import {UserPost} from './model/UserPost';
@@ -66,6 +67,12 @@ export {
      * @property {module:model/NoteItem}
      */
     NoteItem,
+
+    /**
+     * The SimpleResponse model constructor.
+     * @property {module:model/SimpleResponse}
+     */
+    SimpleResponse,
 
     /**
      * The SongItem model constructor.

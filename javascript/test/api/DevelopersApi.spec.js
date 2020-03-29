@@ -319,8 +319,11 @@
 
           instance.signInUser(opts).then(function(data) {
             // TODO: update response assertions
-            expect(data).to.be.a('string');
-            // expect(data).to.be(null);
+            expect(data).to.be.a(WhatApi.SimpleResponse);
+            expect(data.message).to.be.a('string');
+            // expect(data.message).to.be("Request has been processed");
+            expect(data.data).to.be.a(Object);
+            // expect(data.data).to.be();
 
             done();
           }, function(error) {
@@ -342,8 +345,11 @@
 
           instance.signUpUser(opts).then(function(data) {
             // TODO: update response assertions
-            expect(data).to.be.a('string');
-            // expect(data).to.be(null);
+            expect(data).to.be.a(WhatApi.SimpleResponse);
+            expect(data.message).to.be.a('string');
+            // expect(data.message).to.be("Request has been processed");
+            expect(data.data).to.be.a(Object);
+            // expect(data.data).to.be();
 
             done();
           }, function(error) {

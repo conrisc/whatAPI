@@ -16,6 +16,7 @@
 
 import {ApiClient} from "../ApiClient";
 import {NoteItem} from '../model/NoteItem';
+import {SimpleResponse} from '../model/SimpleResponse';
 import {SongItem} from '../model/SongItem';
 import {TagItem} from '../model/TagItem';
 import {UserPost} from '../model/UserPost';
@@ -574,7 +575,7 @@ export class DevelopersApi {
      * signs in user
      * @param {Object} opts Optional parameters
      * @param {module:model/UserPost} opts.userCredentials User's credentials
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link 'String'} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SimpleResponse} and HTTP response
      */
     signInUserWithHttpInfo(opts) {
       opts = opts || {};
@@ -592,8 +593,8 @@ export class DevelopersApi {
 
       let authNames = [];
       let contentTypes = ['application/json'];
-      let accepts = ['text/plain'];
-      let returnType = 'String';
+      let accepts = ['application/json'];
+      let returnType = SimpleResponse;
 
       return this.apiClient.callApi(
         '/user/login', 'POST',
@@ -607,7 +608,7 @@ export class DevelopersApi {
      * signs in user
      * @param {Object} opts Optional parameters
      * @param {module:model/UserPost} opts.userCredentials User's credentials
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link 'String'}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SimpleResponse}
      */
     signInUser(opts) {
       return this.signInUserWithHttpInfo(opts)
@@ -622,7 +623,7 @@ export class DevelopersApi {
      * signs up new user
      * @param {Object} opts Optional parameters
      * @param {module:model/UserPost} opts.userCredentials User's credentials
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link 'String'} and HTTP response
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link module:model/SimpleResponse} and HTTP response
      */
     signUpUserWithHttpInfo(opts) {
       opts = opts || {};
@@ -640,8 +641,8 @@ export class DevelopersApi {
 
       let authNames = [];
       let contentTypes = ['application/json'];
-      let accepts = ['text/plain'];
-      let returnType = 'String';
+      let accepts = ['application/json'];
+      let returnType = SimpleResponse;
 
       return this.apiClient.callApi(
         '/user/register', 'POST',
@@ -655,7 +656,7 @@ export class DevelopersApi {
      * signs up new user
      * @param {Object} opts Optional parameters
      * @param {module:model/UserPost} opts.userCredentials User's credentials
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link 'String'}
+     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link module:model/SimpleResponse}
      */
     signUpUser(opts) {
       return this.signUpUserWithHttpInfo(opts)
