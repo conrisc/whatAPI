@@ -14,6 +14,8 @@ Method | HTTP request | Description
 [**searchNote**](DevelopersApi.md#searchNote) | **GET** /note | searches note
 [**searchSong**](DevelopersApi.md#searchSong) | **GET** /song | Search song
 [**searchTag**](DevelopersApi.md#searchTag) | **GET** /tag | Search tag
+[**signInUser**](DevelopersApi.md#signInUser) | **POST** /user/login | login user
+[**signUpUser**](DevelopersApi.md#signUpUser) | **POST** /user/register | register new user
 [**updateNote**](DevelopersApi.md#updateNote) | **PUT** /note | updates a note item
 [**updateSong**](DevelopersApi.md#updateSong) | **PUT** /song | updates a song item
 [**updateTag**](DevelopersApi.md#updateTag) | **PUT** /tag | updates a tag item
@@ -476,6 +478,94 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+<a name="signInUser"></a>
+# **signInUser**
+> 'String' signInUser(opts)
+
+login user
+
+signs in user
+
+### Example
+```javascript
+import {WhatApi} from 'what_api';
+
+let apiInstance = new WhatApi.DevelopersApi();
+
+let opts = { 
+  'usersCredentials': new WhatApi.UserPost() // UserPost | User's credentials
+};
+apiInstance.signInUser(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **usersCredentials** | [**UserPost**](UserPost.md)| User's credentials | [optional] 
+
+### Return type
+
+**'String'**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/plain
+
+<a name="signUpUser"></a>
+# **signUpUser**
+> 'String' signUpUser(opts)
+
+register new user
+
+signs up new user
+
+### Example
+```javascript
+import {WhatApi} from 'what_api';
+
+let apiInstance = new WhatApi.DevelopersApi();
+
+let opts = { 
+  'usersCredentials': new WhatApi.UserPost() // UserPost | User's credentials
+};
+apiInstance.signUpUser(opts).then((data) => {
+  console.log('API called successfully. Returned data: ' + data);
+}, (error) => {
+  console.error(error);
+});
+
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **usersCredentials** | [**UserPost**](UserPost.md)| User's credentials | [optional] 
+
+### Return type
+
+**'String'**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/plain
 
 <a name="updateNote"></a>
 # **updateNote**

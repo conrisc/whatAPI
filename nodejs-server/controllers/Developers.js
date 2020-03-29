@@ -123,6 +123,28 @@ module.exports.searchTag = function searchTag (req, res, next) {
     });
 };
 
+module.exports.signInUser = function signInUser (req, res, next) {
+  var user&#39;s credentials = req.swagger.params['User&#39;s credentials'].value;
+  Developers.signInUser(user&#39;s credentials)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.signUpUser = function signUpUser (req, res, next) {
+  var user&#39;s credentials = req.swagger.params['User&#39;s credentials'].value;
+  Developers.signUpUser(user&#39;s credentials)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.updateNote = function updateNote (req, res, next) {
   var noteItem = req.swagger.params['NoteItem'].value;
   Developers.updateNote(noteItem)

@@ -31,26 +31,26 @@
   var instance;
 
   describe('(package)', function() {
-    describe('TagItem', function() {
+    describe('UserPost', function() {
       beforeEach(function() {
-        instance = new WhatApi.TagItem();
+        instance = new WhatApi.UserPost();
       });
 
-      it('should create an instance of TagItem', function() {
-        // TODO: update the code to test TagItem
-        expect(instance).to.be.a(WhatApi.TagItem);
+      it('should create an instance of UserPost', function() {
+        // TODO: update the code to test UserPost
+        expect(instance).to.be.a(WhatApi.UserPost);
       });
 
-      it('should have the property id (base name: "_id")', function() {
-        // TODO: update the code to test the property id
-        expect(instance).to.have.property('id');
-        // expect(instance.id).to.be(expectedValueLiteral);
+      it('should have the property email (base name: "email")', function() {
+        // TODO: update the code to test the property email
+        expect(instance).to.have.property('email');
+        // expect(instance.email).to.be(expectedValueLiteral);
       });
 
-      it('should have the property name (base name: "name")', function() {
-        // TODO: update the code to test the property name
-        expect(instance).to.have.property('name');
-        // expect(instance.name).to.be(expectedValueLiteral);
+      it('should have the property password (base name: "password")', function() {
+        // TODO: update the code to test the property password
+        expect(instance).to.have.property('password');
+        // expect(instance.password).to.be(expectedValueLiteral);
       });
 
     });

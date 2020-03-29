@@ -394,6 +394,60 @@ paths:
         "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
+  /user/register:
+    post:
+      tags:
+      - "developers"
+      summary: "register new user"
+      description: "signs up new user"
+      operationId: "signUpUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "text/plain"
+      parameters:
+      - in: "body"
+        name: "User's credentials"
+        description: "User's credentials"
+        required: false
+        schema:
+          $ref: "#/definitions/User_post"
+      responses:
+        "201":
+          description: "user created"
+          schema:
+            type: "string"
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: "user with given email already exists"
+      x-swagger-router-controller: "Developers"
+  /user/login:
+    post:
+      tags:
+      - "developers"
+      summary: "login user"
+      description: "signs in user"
+      operationId: "signInUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "text/plain"
+      parameters:
+      - in: "body"
+        name: "User's credentials"
+        description: "User's credentials"
+        required: false
+        schema:
+          $ref: "#/definitions/User_post"
+      responses:
+        "200":
+          description: "user signed in"
+          schema:
+            type: "string"
+        "400":
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
 definitions:
   NoteItem:
     type: "object"
@@ -414,6 +468,21 @@ definitions:
       _id: "4daef72846cae99923dfd6ez"
       text: "Some note"
       creationDate: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
+  User_post:
+    type: "object"
+    required:
+    - "email"
+    - "password"
+    properties:
+      email:
+        type: "string"
+        example: "mylogin@service.com"
+      password:
+        type: "string"
+        example: "pa$$word"
+    example:
+      password: "pa$$word"
+      email: "mylogin@service.com"
   SongItem:
     type: "object"
     required:
