@@ -481,7 +481,7 @@ No authorization required
 
 <a name="signInUser"></a>
 # **signInUser**
-> 'String' signInUser(opts)
+> SimpleResponse signInUser(opts)
 
 login user
 
@@ -512,7 +512,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**'String'**
+[**SimpleResponse**](SimpleResponse.md)
 
 ### Authorization
 
@@ -521,11 +521,11 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: text/plain
+ - **Accept**: application/json
 
 <a name="signUpUser"></a>
 # **signUpUser**
-> 'String' signUpUser(opts)
+> SimpleResponse signUpUser(opts)
 
 register new user
 
@@ -556,7 +556,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**'String'**
+[**SimpleResponse**](SimpleResponse.md)
 
 ### Authorization
 
@@ -565,7 +565,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: text/plain
+ - **Accept**: application/json
 
 <a name="updateNote"></a>
 # **updateNote**

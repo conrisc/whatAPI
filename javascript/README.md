@@ -110,6 +110,7 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [WhatApi.NoteItem](docs/NoteItem.md)
+ - [WhatApi.SimpleResponse](docs/SimpleResponse.md)
  - [WhatApi.SongItem](docs/SongItem.md)
  - [WhatApi.TagItem](docs/TagItem.md)
  - [WhatApi.UserPost](docs/UserPost.md)
