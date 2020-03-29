@@ -36,17 +36,6 @@ module.exports.addTag = function addTag (req, res, next) {
     });
 };
 
-module.exports.addUser = function addUser (req, res, next) {
-  var user = req.swagger.params['User'].value;
-  Developers.addUser(user)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
 module.exports.getYtItems = function getYtItems (req, res, next) {
   var title = req.swagger.params['title'].value;
   var limit = req.swagger.params['limit'].value;
@@ -151,6 +140,28 @@ module.exports.searchUser = function searchUser (req, res, next) {
   var limit = req.swagger.params['limit'].value;
   var email = req.swagger.params['email'].value;
   Developers.searchUser(id,skip,limit,email)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.signInUser = function signInUser (req, res, next) {
+  var user&#39;s credentials = req.swagger.params['User&#39;s credentials'].value;
+  Developers.signInUser(user&#39;s credentials)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.signUpUser = function signUpUser (req, res, next) {
+  var user&#39;s credentials = req.swagger.params['User&#39;s credentials'].value;
+  Developers.signUpUser(user&#39;s credentials)
     .then(function (response) {
       utils.writeJson(res, response);
     })

@@ -440,33 +440,6 @@ paths:
         "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
-    post:
-      tags:
-      - "developers"
-      summary: "adds a user"
-      description: "Adds an item to the database"
-      operationId: "addUser"
-      consumes:
-      - "application/json"
-      produces:
-      - "text/plain"
-      parameters:
-      - in: "body"
-        name: "User"
-        description: "User to add"
-        required: false
-        schema:
-          $ref: "#/definitions/User_post"
-      responses:
-        "201":
-          description: "user created"
-          schema:
-            type: "string"
-        "400":
-          description: "invalid input, object invalid"
-        "409":
-          description: "user with given email already exists"
-      x-swagger-router-controller: "Developers"
     put:
       tags:
       - "developers"
@@ -508,6 +481,60 @@ paths:
         "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
+  /user/register:
+    post:
+      tags:
+      - "developers"
+      summary: "register new user"
+      description: "signs up new user"
+      operationId: "signUpUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "text/plain"
+      parameters:
+      - in: "body"
+        name: "User's credentials"
+        description: "User's credentials"
+        required: false
+        schema:
+          $ref: "#/definitions/User_post"
+      responses:
+        "201":
+          description: "user created"
+          schema:
+            type: "string"
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: "user with given email already exists"
+      x-swagger-router-controller: "Developers"
+  /user/login:
+    post:
+      tags:
+      - "developers"
+      summary: "login user"
+      description: "signs in user"
+      operationId: "signInUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "text/plain"
+      parameters:
+      - in: "body"
+        name: "User's credentials"
+        description: "User's credentials"
+        required: false
+        schema:
+          $ref: "#/definitions/User_post"
+      responses:
+        "200":
+          description: "user signed in"
+          schema:
+            type: "string"
+        "400":
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: "Developers"
 definitions:
   User:
     type: "object"
@@ -533,13 +560,9 @@ definitions:
   User_post:
     type: "object"
     required:
-    - "creationDate"
     - "email"
     - "password"
     properties:
-      creationDate:
-        type: "string"
-        example: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
       email:
         type: "string"
         example: "mylogin@service.com"
@@ -548,7 +571,6 @@ definitions:
         example: "pa$$word"
     example:
       password: "pa$$word"
-      creationDate: "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)"
       email: "mylogin@service.com"
   SongItem:
     type: "object"
