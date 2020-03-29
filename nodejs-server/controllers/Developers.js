@@ -81,17 +81,6 @@ module.exports.removeTag = function removeTag (req, res, next) {
     });
 };
 
-module.exports.removeUser = function removeUser (req, res, next) {
-  var id = req.swagger.params['id'].value;
-  Developers.removeUser(id)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
 module.exports.searchNote = function searchNote (req, res, next) {
   var id = req.swagger.params['id'].value;
   var skip = req.swagger.params['skip'].value;
@@ -126,20 +115,6 @@ module.exports.searchTag = function searchTag (req, res, next) {
   var skip = req.swagger.params['skip'].value;
   var limit = req.swagger.params['limit'].value;
   Developers.searchTag(id,skip,limit)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.searchUser = function searchUser (req, res, next) {
-  var id = req.swagger.params['id'].value;
-  var skip = req.swagger.params['skip'].value;
-  var limit = req.swagger.params['limit'].value;
-  var email = req.swagger.params['email'].value;
-  Developers.searchUser(id,skip,limit,email)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -195,17 +170,6 @@ module.exports.updateSong = function updateSong (req, res, next) {
 module.exports.updateTag = function updateTag (req, res, next) {
   var tagItem = req.swagger.params['TagItem'].value;
   Developers.updateTag(tagItem)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.updateUser = function updateUser (req, res, next) {
-  var user = req.swagger.params['User'].value;
-  Developers.updateUser(user)
     .then(function (response) {
       utils.writeJson(res, response);
     })
