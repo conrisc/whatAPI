@@ -44,7 +44,7 @@
           opts.noteItem = new WhatApi.NoteItem();
           opts.noteItem.id = "4daef72846cae99923dfd6ez";
           opts.noteItem.creationDate = "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)";
-          opts.noteItem.email = "mylogin@service.com";
+          opts.noteItem.text = "Some note";
 
           instance.addNote(opts).then(function(data) {
             // TODO: update response assertions
@@ -193,23 +193,6 @@
           done();
         });
       });
-      describe('removeUser', function() {
-        it('should call removeUser successfully', function(done) {
-          // TODO: uncomment, update parameter values for removeUser call
-          /*
-          var id = "id_example";
-
-          instance.removeUser(id).then(function(data) {
-
-            done();
-          }, function(error) {
-            done(error);
-          });
-          */
-          // TODO: uncomment and complete method invocation above, then delete this line and the next:
-          done();
-        });
-      });
       describe('searchNote', function() {
         it('should call searchNote successfully', function(done) {
           // TODO: uncomment, update parameter values for searchNote call and complete the assertions
@@ -231,8 +214,8 @@
               // expect(data.id).to.be("4daef72846cae99923dfd6ez");
               expect(data.creationDate).to.be.a('string');
               // expect(data.creationDate).to.be("Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)");
-              expect(data.email).to.be.a('string');
-              // expect(data.email).to.be("mylogin@service.com");
+              expect(data.text).to.be.a('string');
+              // expect(data.text).to.be("Some note");
             }
 
             done();
@@ -325,35 +308,6 @@
           done();
         });
       });
-      describe('searchUser', function() {
-        it('should call searchUser successfully', function(done) {
-          // TODO: uncomment, update parameter values for searchUser call and complete the assertions
-          /*
-          var opts = {};
-          opts.id = "id_example";
-          opts.skip = 56;
-          opts.limit = 56;
-          opts.email = "email_example";
-
-          instance.searchUser(opts).then(function(data) {
-            // TODO: update response assertions
-            let dataCtr = data;
-            expect(dataCtr).to.be.an(Array);
-            expect(dataCtr).to.not.be.empty();
-            for (let p in dataCtr) {
-              let data = dataCtr[p];
-              expect(data).to.be.a(WhatApi.User);
-            }
-
-            done();
-          }, function(error) {
-            done(error);
-          });
-          */
-          // TODO: uncomment and complete method invocation above, then delete this line and the next:
-          done();
-        });
-      });
       describe('signInUser', function() {
         it('should call signInUser successfully', function(done) {
           // TODO: uncomment, update parameter values for signInUser call and complete the assertions
@@ -408,7 +362,7 @@
           opts.noteItem = new WhatApi.NoteItem();
           opts.noteItem.id = "4daef72846cae99923dfd6ez";
           opts.noteItem.creationDate = "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)";
-          opts.noteItem.email = "mylogin@service.com";
+          opts.noteItem.text = "Some note";
 
           instance.updateNote(opts).then(function(data) {
 
@@ -474,27 +428,6 @@
           opts.tagItem.name = "Dance";
 
           instance.updateTag(opts).then(function(data) {
-
-            done();
-          }, function(error) {
-            done(error);
-          });
-          */
-          // TODO: uncomment and complete method invocation above, then delete this line and the next:
-          done();
-        });
-      });
-      describe('updateUser', function() {
-        it('should call updateUser successfully', function(done) {
-          // TODO: uncomment, update parameter values for updateUser call and complete the assertions
-          /*
-          var opts = {};
-          opts.user = new WhatApi.User();
-
-          instance.updateUser(opts).then(function(data) {
-            // TODO: update response assertions
-            expect(data).to.be.a('string');
-            // expect(data).to.be(null);
 
             done();
           }, function(error) {

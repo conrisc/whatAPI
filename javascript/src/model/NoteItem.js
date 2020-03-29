@@ -27,11 +27,11 @@ export class NoteItem {
    * @alias module:model/NoteItem
    * @class
    * @param creationDate {String} 
-   * @param email {String} 
+   * @param text {String} 
    */
-  constructor(creationDate, email) {
+  constructor(creationDate, text) {
     this.creationDate = creationDate;
-    this.email = email;
+    this.text = text;
   }
 
   /**
@@ -48,8 +48,8 @@ export class NoteItem {
         obj.id = ApiClient.convertToType(data['_id'], 'String');
       if (data.hasOwnProperty('creationDate'))
         obj.creationDate = ApiClient.convertToType(data['creationDate'], 'String');
-      if (data.hasOwnProperty('email'))
-        obj.email = ApiClient.convertToType(data['email'], 'String');
+      if (data.hasOwnProperty('text'))
+        obj.text = ApiClient.convertToType(data['text'], 'String');
     }
     return obj;
   }
@@ -66,8 +66,8 @@ NoteItem.prototype.id = undefined;
 NoteItem.prototype.creationDate = undefined;
 
 /**
- * @member {String} email
+ * @member {String} text
  */
-NoteItem.prototype.email = undefined;
+NoteItem.prototype.text = undefined;
 
 

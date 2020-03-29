@@ -18,7 +18,6 @@ import {ApiClient} from "../ApiClient";
 import {NoteItem} from '../model/NoteItem';
 import {SongItem} from '../model/SongItem';
 import {TagItem} from '../model/TagItem';
-import {User} from '../model/User';
 import {UserPost} from '../model/UserPost';
 import {YtVideoItem} from '../model/YtVideoItem';
 
@@ -397,57 +396,6 @@ export class DevelopersApi {
 
 
     /**
-     * removes a user
-     * Removes an item from the database
-     * @param {String} id user id
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing HTTP response
-     */
-    removeUserWithHttpInfo(id) {
-      let postBody = null;
-
-      // verify the required parameter 'id' is set
-      if (id === undefined || id === null) {
-        throw new Error("Missing the required parameter 'id' when calling removeUser");
-      }
-
-
-      let pathParams = {
-      };
-      let queryParams = {
-        'id': id
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = [];
-      let contentTypes = [];
-      let accepts = [];
-      let returnType = null;
-
-      return this.apiClient.callApi(
-        '/user', 'DELETE',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      );
-    }
-
-    /**
-     * removes a user
-     * Removes an item from the database
-     * @param {String} id user id
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}
-     */
-    removeUser(id) {
-      return this.removeUserWithHttpInfo(id)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
-    }
-
-
-    /**
      * searches note
      * By passing in the appropriate options, you can search for available note in the system 
      * @param {Object} opts Optional parameters
@@ -615,64 +563,6 @@ export class DevelopersApi {
      */
     searchTag(opts) {
       return this.searchTagWithHttpInfo(opts)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
-    }
-
-
-    /**
-     * Search users
-     * By passing in the appropriate options, you can search for available user in the system 
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.id user id
-     * @param {Number} opts.skip number of records to skip for pagination
-     * @param {Number} opts.limit maximum number of records to return
-     * @param {String} opts.email email of wanted user
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link Array.<module:model/User>} and HTTP response
-     */
-    searchUserWithHttpInfo(opts) {
-      opts = opts || {};
-      let postBody = null;
-
-
-      let pathParams = {
-      };
-      let queryParams = {
-        'id': opts['id'],
-        'skip': opts['skip'],
-        'limit': opts['limit'],
-        'email': opts['email']
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = [];
-      let contentTypes = [];
-      let accepts = ['application/json'];
-      let returnType = [User];
-
-      return this.apiClient.callApi(
-        '/user', 'GET',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      );
-    }
-
-    /**
-     * Search users
-     * By passing in the appropriate options, you can search for available user in the system 
-     * @param {Object} opts Optional parameters
-     * @param {String} opts.id user id
-     * @param {Number} opts.skip number of records to skip for pagination
-     * @param {Number} opts.limit maximum number of records to return
-     * @param {String} opts.email email of wanted user
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link Array.<module:model/User>}
-     */
-    searchUser(opts) {
-      return this.searchUserWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });
@@ -913,54 +803,6 @@ export class DevelopersApi {
      */
     updateTag(opts) {
       return this.updateTagWithHttpInfo(opts)
-        .then(function(response_and_data) {
-          return response_and_data.data;
-        });
-    }
-
-
-    /**
-     * updates a user item
-     * Updates an item in the database
-     * @param {Object} opts Optional parameters
-     * @param {module:model/User} opts.user User to update
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with an object containing data of type {@link 'String'} and HTTP response
-     */
-    updateUserWithHttpInfo(opts) {
-      opts = opts || {};
-      let postBody = opts['user'];
-
-
-      let pathParams = {
-      };
-      let queryParams = {
-      };
-      let headerParams = {
-      };
-      let formParams = {
-      };
-
-      let authNames = [];
-      let contentTypes = ['application/json'];
-      let accepts = [];
-      let returnType = 'String';
-
-      return this.apiClient.callApi(
-        '/user', 'PUT',
-        pathParams, queryParams, headerParams, formParams, postBody,
-        authNames, contentTypes, accepts, returnType
-      );
-    }
-
-    /**
-     * updates a user item
-     * Updates an item in the database
-     * @param {Object} opts Optional parameters
-     * @param {module:model/User} opts.user User to update
-     * @return {Promise} a {@link https://www.promisejs.org/|Promise}, with data of type {@link 'String'}
-     */
-    updateUser(opts) {
-      return this.updateUserWithHttpInfo(opts)
         .then(function(response_and_data) {
           return response_and_data.data;
         });

@@ -53,10 +53,10 @@
         // expect(instance.creationDate).to.be(expectedValueLiteral);
       });
 
-      it('should have the property email (base name: "email")', function() {
-        // TODO: update the code to test the property email
-        expect(instance).to.have.property('email');
-        // expect(instance.email).to.be(expectedValueLiteral);
+      it('should have the property text (base name: "text")', function() {
+        // TODO: update the code to test the property text
+        expect(instance).to.have.property('text');
+        // expect(instance.text).to.be(expectedValueLiteral);
       });
 
     });

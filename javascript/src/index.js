@@ -18,7 +18,6 @@ import {ApiClient} from './ApiClient';
 import {NoteItem} from './model/NoteItem';
 import {SongItem} from './model/SongItem';
 import {TagItem} from './model/TagItem';
-import {User} from './model/User';
 import {UserPost} from './model/UserPost';
 import {YtVideoItem} from './model/YtVideoItem';
 import {DevelopersApi} from './api/DevelopersApi';
@@ -79,12 +78,6 @@ export {
      * @property {module:model/TagItem}
      */
     TagItem,
-
-    /**
-     * The User model constructor.
-     * @property {module:model/User}
-     */
-    User,
 
     /**
      * The UserPost model constructor.
