@@ -3,6 +3,7 @@
 const ObjectId = require('mongodb').ObjectId;
 const bcrypt = require('bcrypt');
 
+var utils = require('../utils/writer.js');
 const DBService = require('./DatabaseService');
 const scrape = require('./scraperService').scrape;
 const decodeHtml = require('./htmlDecoderService').decodeHtml;
@@ -331,8 +332,10 @@ exports.searchTag = function(id,skip,limit) {
 }
 
 exports.signInUser = function(userCredentials) {
+	const response = new utils.ResponsePayload(200, {}, {
+		'Authorization': 'bardzo dobra autoryzacja'
+	});
 	return new Promise((resolve, reject) => {
-		// console.log(bcrypt.compareSync(myPlaintextPassword, hash)); // true
 		const data = {
 			email: userCredentials.email
 		};
@@ -347,28 +350,32 @@ exports.signInUser = function(userCredentials) {
 		function log(err, docs) {
 			if (err) {
 				console.log(err);
-				reject({
+				response.payload = {
 					message: 'Something went wrong :('
-				});
+				};
+				reject(response)
 			}
 			else if (docs.length === 1) {
 				console.log('Found: ', docs);
 				bcrypt.compare(userCredentials.password, docs[0].hash, (err, result) => {
 					if (result) {
-						resolve({
+						response.payload = {
 							message: `Signed in user ${userCredentials.email}`,
 							data: docs
-						});
+						};
+						resolve(response);
 					} else {
-						reject({
+						response.payload = {
 							message: 'Invalid credentials'
-						});
+						};
+						reject(response);
 					}
 				});
 			} else {
-				reject({
+				response.payload = {
 					message: 'Invalid credentials'
-				});
+				};
+				reject(response);
 			}
 		}
 	});
