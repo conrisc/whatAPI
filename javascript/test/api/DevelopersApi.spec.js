@@ -313,9 +313,9 @@
           // TODO: uncomment, update parameter values for signInUser call and complete the assertions
           /*
           var opts = {};
-          opts.usersCredentials = new WhatApi.UserPost();
-          opts.usersCredentials.email = "mylogin@service.com";
-          opts.usersCredentials.password = "pa$$word";
+          opts.userCredentials = new WhatApi.UserPost();
+          opts.userCredentials.email = "mylogin@service.com";
+          opts.userCredentials.password = "pa$$word";
 
           instance.signInUser(opts).then(function(data) {
             // TODO: update response assertions
@@ -336,9 +336,9 @@
           // TODO: uncomment, update parameter values for signUpUser call and complete the assertions
           /*
           var opts = {};
-          opts.usersCredentials = new WhatApi.UserPost();
-          opts.usersCredentials.email = "mylogin@service.com";
-          opts.usersCredentials.password = "pa$$word";
+          opts.userCredentials = new WhatApi.UserPost();
+          opts.userCredentials.email = "mylogin@service.com";
+          opts.userCredentials.password = "pa$$word";
 
           instance.signUpUser(opts).then(function(data) {
             // TODO: update response assertions

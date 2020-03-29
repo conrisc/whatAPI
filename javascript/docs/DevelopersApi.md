@@ -494,7 +494,7 @@ import {WhatApi} from 'what_api';
 let apiInstance = new WhatApi.DevelopersApi();
 
 let opts = { 
-  'usersCredentials': new WhatApi.UserPost() // UserPost | User's credentials
+  'userCredentials': new WhatApi.UserPost() // UserPost | User's credentials
 };
 apiInstance.signInUser(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -508,7 +508,7 @@ apiInstance.signInUser(opts).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **usersCredentials** | [**UserPost**](UserPost.md)| User's credentials | [optional] 
+ **userCredentials** | [**UserPost**](UserPost.md)| User's credentials | [optional] 
 
 ### Return type
 
@@ -538,7 +538,7 @@ import {WhatApi} from 'what_api';
 let apiInstance = new WhatApi.DevelopersApi();
 
 let opts = { 
-  'usersCredentials': new WhatApi.UserPost() // UserPost | User's credentials
+  'userCredentials': new WhatApi.UserPost() // UserPost | User's credentials
 };
 apiInstance.signUpUser(opts).then((data) => {
   console.log('API called successfully. Returned data: ' + data);
@@ -552,7 +552,7 @@ apiInstance.signUpUser(opts).then((data) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **usersCredentials** | [**UserPost**](UserPost.md)| User's credentials | [optional] 
+ **userCredentials** | [**UserPost**](UserPost.md)| User's credentials | [optional] 
 
 ### Return type
 
