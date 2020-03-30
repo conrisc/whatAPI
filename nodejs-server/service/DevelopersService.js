@@ -301,7 +301,7 @@ exports.signInUser = function(userCredentials) {
 				const userData = docs[0];
 				bcrypt.compare(userCredentials.password, userData.hash, (err, result) => {
 					if (result) {
-						const token = jwt.sign({ userId: userData._id }, 'ultra-key');
+						const token = jwt.sign({ userId: userData._id }, 'my-ultr4-priv4t3-k3y');
 						response.payload = {
 							message: `Signed in user ${userCredentials.email}`,
 							data: {

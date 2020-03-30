@@ -9,6 +9,7 @@ var app = require('connect')();
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
 var serverPort = process.env.PORT || 8080;
+const authService = require('./service/authService');
 const injectWebSocket = require('./websocket').injectWebSocket;
 
 
@@ -25,12 +26,7 @@ var options = {
 };
 
 var securityOptions = {
-  'AuthorizationHeader': function (req, authOrSecDef, scopesOrApiKey, next) {
-      if (scopesOrApiKey === 'moj_key')
-        next();
-      else
-        next(new Error('Sorry, nope :('));
-    }
+  'AuthorizationHeader': authService.verifyToken
 };
 
 // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
