@@ -24,6 +24,16 @@ var options = {
   useStubs: process.env.NODE_ENV === 'development' // Conditionally turn on stubs (mock mode)
 };
 
+var securityOptions = {
+  'AuthorizationHeader': function (req, authOrSecDef, scopesOrApiKey, callback) {
+      console.log('supcio', authOrSecDef, scopesOrApiKey);
+      if (scopesOrApiKey === 'moj_key')
+        callback(null);
+      else
+        callback(new Error('Sorry, nope :('));
+    }
+};
+
 // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
 var spec = fs.readFileSync(path.join(__dirname,'api/swagger.yaml'), 'utf8');
 var swaggerDoc = jsyaml.safeLoad(spec);
@@ -36,6 +46,9 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
   // Validate Swagger requests
   app.use(middleware.swaggerValidator());
+
+  // Wire up authentication/authorization handlers
+  app.use(middleware.swaggerSecurity(securityOptions));
 
   // Route validated requests to appropriate controller
   app.use(middleware.swaggerRouter(options));
