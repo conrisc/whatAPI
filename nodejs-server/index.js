@@ -25,12 +25,11 @@ var options = {
 };
 
 var securityOptions = {
-  'AuthorizationHeader': function (req, authOrSecDef, scopesOrApiKey, callback) {
-      console.log('supcio', authOrSecDef, scopesOrApiKey);
+  'AuthorizationHeader': function (req, authOrSecDef, scopesOrApiKey, next) {
       if (scopesOrApiKey === 'moj_key')
-        callback(null);
+        next();
       else
-        callback(new Error('Sorry, nope :('));
+        next({ code: 200, payload: new Error('Sorry, nope :(') });
     }
 };
 

@@ -1,6 +1,9 @@
 'use strict';
 
 
+const ObjectId = require('mongodb').ObjectId;
+
+const DBService = require('./DatabaseService');
 /**
  * Search song
  * By passing in the appropriate options, you can search for available song in the system 
@@ -13,27 +16,42 @@
  * sort String type of sort to use (optional)
  * returns List
  **/
-exports.searchSong = function(id,skip,limit,title,tags,sort) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "_id" : "5daef72831cae99923dad6ez",
-  "title" : "G-Eazy - Far alone",
-  "url" : "https://youtube.com/watch?v=sxV1_Lr1yf0",
-  "dateAdded" : "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)",
-  "tags" : [ "dance", "party" ]
-}, {
-  "_id" : "5daef72831cae99923dad6ez",
-  "title" : "G-Eazy - Far alone",
-  "url" : "https://youtube.com/watch?v=sxV1_Lr1yf0",
-  "dateAdded" : "Wed Oct 09 2019 13:39:18 GMT+0200 (Central European Summer Time)",
-  "tags" : [ "dance", "party" ]
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
 
+exports.searchSong = function(id,skip,limit,title,tags,sort) {
+	const data = {};
+	if (id) data._id = new ObjectId(id);
+	if (title) data.title = { $regex: title, $options: 'i' };
+	if (tags && tags.length > 0) data.tags = { $in: tags };
+
+	const sortData = {};
+	switch(sort) {
+		case 'title_asc':
+			sortData.title = 1;
+			break;
+		case 'title_desc':
+			sortData.title = -1;
+			break;
+	}
+
+    return new Promise(function(resolve, reject) {
+        DBService.getDB()
+            .then(findSong);
+
+        function findSong(db) {
+            const collection = db.collection('songs');
+            if (sort !== 'random')
+                collection.find(data).sort(sortData).skip(skip).limit(limit).toArray(log);
+            else
+                collection.aggregate([{ $match: data }, { $sample: {size: limit} }]).toArray(log);
+        }
+
+        function log(err, docs) {
+            if (err)
+                console.log(err);
+            else {
+                console.log(`Found ${docs.length} songs`);
+                resolve(docs);
+            }
+        }
+    });
+}
