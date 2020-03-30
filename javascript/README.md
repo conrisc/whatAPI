@@ -120,7 +120,7 @@ Class | Method | HTTP request | Description
 ## Documentation for Authorization
 
 
-### APIKeyHeader
+### AuthorizationHeader
 
 - **Type**: API key
 - **API key parameter name**: Authorization

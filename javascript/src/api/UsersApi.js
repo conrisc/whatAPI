@@ -69,7 +69,7 @@ export class UsersApi {
       let formParams = {
       };
 
-      let authNames = ['APIKeyHeader'];
+      let authNames = ['AuthorizationHeader'];
       let contentTypes = [];
       let accepts = ['application/json'];
       let returnType = [SongItem];

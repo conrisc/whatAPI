@@ -20,11 +20,11 @@ By passing in the appropriate options, you can search for available song in the 
 import {WhatApi} from 'what_api';
 let defaultClient = WhatApi.ApiClient.instance;
 
-// Configure API key authorization: APIKeyHeader
-let APIKeyHeader = defaultClient.authentications['APIKeyHeader'];
-APIKeyHeader.apiKey = 'YOUR API KEY';
+// Configure API key authorization: AuthorizationHeader
+let AuthorizationHeader = defaultClient.authentications['AuthorizationHeader'];
+AuthorizationHeader.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//APIKeyHeader.apiKeyPrefix = 'Token';
+//AuthorizationHeader.apiKeyPrefix = 'Token';
 
 let apiInstance = new WhatApi.UsersApi();
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[AuthorizationHeader](../README.md#AuthorizationHeader)
 
 ### HTTP request headers
 
