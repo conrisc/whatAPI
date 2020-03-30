@@ -29,7 +29,7 @@ var securityOptions = {
       if (scopesOrApiKey === 'moj_key')
         next();
       else
-        next({ code: 200, payload: new Error('Sorry, nope :(') });
+        next(new Error('Sorry, nope :('));
     }
 };
 
@@ -48,6 +48,11 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
   // Wire up authentication/authorization handlers
   app.use(middleware.swaggerSecurity(securityOptions));
+
+  app.use(function onerror(err, req, res, next) {
+    console.log('An error occured:', err.toString());
+    res.end('Access denied!')
+  });
 
   // Route validated requests to appropriate controller
   app.use(middleware.swaggerRouter(options));
