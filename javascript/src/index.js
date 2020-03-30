@@ -22,6 +22,7 @@ import {TagItem} from './model/TagItem';
 import {UserPost} from './model/UserPost';
 import {YtVideoItem} from './model/YtVideoItem';
 import {DevelopersApi} from './api/DevelopersApi';
+import {UsersApi} from './api/UsersApi';
 
 
 /**
@@ -102,5 +103,11 @@ export {
     * The DevelopersApi service constructor.
     * @property {module:api/DevelopersApi}
     */
-    DevelopersApi
+    DevelopersApi,
+
+    /**
+    * The UsersApi service constructor.
+    * @property {module:api/UsersApi}
+    */
+    UsersApi
 };

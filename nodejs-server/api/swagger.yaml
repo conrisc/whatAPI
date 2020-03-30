@@ -16,6 +16,8 @@ tags:
   description: "Secured Admin-only calls"
 - name: "developers"
   description: "Operations available to regular developers"
+- name: "users"
+  description: "Operations available to signed in users"
 schemes:
 - "https"
 paths:
@@ -129,7 +131,7 @@ paths:
   /song:
     get:
       tags:
-      - "developers"
+      - "users"
       summary: "Search song"
       description: "By passing in the appropriate options, you can search for\navailable\
         \ song in the system\n"
@@ -184,7 +186,9 @@ paths:
               $ref: "#/definitions/SongItem"
         "400":
           description: "invalid input, object invalid"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
     post:
       tags:
       - "developers"
@@ -448,6 +452,11 @@ paths:
         "400":
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
+securityDefinitions:
+  AuthorizationHeader:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
 definitions:
   SimpleResponse:
     type: "object"

@@ -43,6 +43,7 @@ export class ApiClient {
          * @type {Array.<String>}
          */
         this.authentications = {
+            'AuthorizationHeader': {type: 'apiKey', 'in': 'header', name: 'Authorization'}
         }
 
         /**
