@@ -98,13 +98,13 @@ Class | Method | HTTP request | Description
 *WhatApi.DevelopersApi* | [**removeSong**](docs/DevelopersApi.md#removeSong) | **DELETE** /song | removes a song item
 *WhatApi.DevelopersApi* | [**removeTag**](docs/DevelopersApi.md#removeTag) | **DELETE** /tag | removes a song item
 *WhatApi.DevelopersApi* | [**searchNote**](docs/DevelopersApi.md#searchNote) | **GET** /note | searches note
-*WhatApi.DevelopersApi* | [**searchSong**](docs/DevelopersApi.md#searchSong) | **GET** /song | Search song
 *WhatApi.DevelopersApi* | [**searchTag**](docs/DevelopersApi.md#searchTag) | **GET** /tag | Search tag
 *WhatApi.DevelopersApi* | [**signInUser**](docs/DevelopersApi.md#signInUser) | **POST** /user/login | login user
 *WhatApi.DevelopersApi* | [**signUpUser**](docs/DevelopersApi.md#signUpUser) | **POST** /user/register | register new user
 *WhatApi.DevelopersApi* | [**updateNote**](docs/DevelopersApi.md#updateNote) | **PUT** /note | updates a note item
 *WhatApi.DevelopersApi* | [**updateSong**](docs/DevelopersApi.md#updateSong) | **PUT** /song | updates a song item
 *WhatApi.DevelopersApi* | [**updateTag**](docs/DevelopersApi.md#updateTag) | **PUT** /tag | updates a tag item
+*WhatApi.UsersApi* | [**searchSong**](docs/UsersApi.md#searchSong) | **GET** /song | Search song
 
 
 ## Documentation for Models
@@ -119,5 +119,10 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Authorization
 
- All endpoints do not require authorization.
+
+### APIKeyHeader
+
+- **Type**: API key
+- **API key parameter name**: Authorization
+- **Location**: HTTP header
 
