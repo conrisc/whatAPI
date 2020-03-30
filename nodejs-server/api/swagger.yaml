@@ -187,7 +187,7 @@ paths:
         "400":
           description: "invalid input, object invalid"
       security:
-      - APIKeyHeader: []
+      - AuthorizationHeader: []
       x-swagger-router-controller: "Users"
     post:
       tags:
@@ -453,7 +453,7 @@ paths:
           description: "invalid input, object invalid"
       x-swagger-router-controller: "Developers"
 securityDefinitions:
-  APIKeyHeader:
+  AuthorizationHeader:
     type: "apiKey"
     name: "Authorization"
     in: "header"
