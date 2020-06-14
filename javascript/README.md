@@ -73,9 +73,9 @@ var WhatApi = require('what_api');
 var api = new WhatApi.DevelopersApi()
 
 var opts = { 
-  'noteItem': new WhatApi.NoteItem() // {NoteItem} Note item to add
+  'userCredentials': new WhatApi.UserPost() // {UserPost} User's credentials
 };
-api.addNote(opts).then(function(data) {
+api.signInUser(opts).then(function(data) {
   console.log('API called successfully. Returned data: ' + data);
 }, function(error) {
   console.error(error);
@@ -90,21 +90,21 @@ All URIs are relative to *https://what-appy-server.herokuapp.com/whatapi*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*WhatApi.DevelopersApi* | [**addNote**](docs/DevelopersApi.md#addNote) | **POST** /note | adds a note item
-*WhatApi.DevelopersApi* | [**addSong**](docs/DevelopersApi.md#addSong) | **POST** /song | adds a song item
-*WhatApi.DevelopersApi* | [**addTag**](docs/DevelopersApi.md#addTag) | **POST** /tag | adds a tag item
-*WhatApi.DevelopersApi* | [**getYtItems**](docs/DevelopersApi.md#getYtItems) | **GET** /ytitems | Get data
-*WhatApi.DevelopersApi* | [**removeNote**](docs/DevelopersApi.md#removeNote) | **DELETE** /note | removes a note item
-*WhatApi.DevelopersApi* | [**removeSong**](docs/DevelopersApi.md#removeSong) | **DELETE** /song | removes a song item
-*WhatApi.DevelopersApi* | [**removeTag**](docs/DevelopersApi.md#removeTag) | **DELETE** /tag | removes a song item
-*WhatApi.DevelopersApi* | [**searchNote**](docs/DevelopersApi.md#searchNote) | **GET** /note | searches note
-*WhatApi.DevelopersApi* | [**searchTag**](docs/DevelopersApi.md#searchTag) | **GET** /tag | Search tag
 *WhatApi.DevelopersApi* | [**signInUser**](docs/DevelopersApi.md#signInUser) | **POST** /user/login | login user
 *WhatApi.DevelopersApi* | [**signUpUser**](docs/DevelopersApi.md#signUpUser) | **POST** /user/register | register new user
-*WhatApi.DevelopersApi* | [**updateNote**](docs/DevelopersApi.md#updateNote) | **PUT** /note | updates a note item
-*WhatApi.DevelopersApi* | [**updateSong**](docs/DevelopersApi.md#updateSong) | **PUT** /song | updates a song item
-*WhatApi.DevelopersApi* | [**updateTag**](docs/DevelopersApi.md#updateTag) | **PUT** /tag | updates a tag item
+*WhatApi.UsersApi* | [**addNote**](docs/UsersApi.md#addNote) | **POST** /note | adds a note item
+*WhatApi.UsersApi* | [**addSong**](docs/UsersApi.md#addSong) | **POST** /song | adds a song item
+*WhatApi.UsersApi* | [**addTag**](docs/UsersApi.md#addTag) | **POST** /tag | adds a tag item
+*WhatApi.UsersApi* | [**getYtItems**](docs/UsersApi.md#getYtItems) | **GET** /ytitems | Get data
+*WhatApi.UsersApi* | [**removeNote**](docs/UsersApi.md#removeNote) | **DELETE** /note | removes a note item
+*WhatApi.UsersApi* | [**removeSong**](docs/UsersApi.md#removeSong) | **DELETE** /song | removes a song item
+*WhatApi.UsersApi* | [**removeTag**](docs/UsersApi.md#removeTag) | **DELETE** /tag | removes a song item
+*WhatApi.UsersApi* | [**searchNote**](docs/UsersApi.md#searchNote) | **GET** /note | searches note
 *WhatApi.UsersApi* | [**searchSong**](docs/UsersApi.md#searchSong) | **GET** /song | Search song
+*WhatApi.UsersApi* | [**searchTag**](docs/UsersApi.md#searchTag) | **GET** /tag | Search tag
+*WhatApi.UsersApi* | [**updateNote**](docs/UsersApi.md#updateNote) | **PUT** /note | updates a note item
+*WhatApi.UsersApi* | [**updateSong**](docs/UsersApi.md#updateSong) | **PUT** /song | updates a song item
+*WhatApi.UsersApi* | [**updateTag**](docs/UsersApi.md#updateTag) | **PUT** /tag | updates a tag item
 
 
 ## Documentation for Models
