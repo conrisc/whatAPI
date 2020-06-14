@@ -24,7 +24,7 @@ paths:
   /note:
     get:
       tags:
-      - "developers"
+      - "users"
       summary: "searches note"
       description: "By passing in the appropriate options, you can search for\navailable\
         \ note in the system\n"
@@ -49,7 +49,7 @@ paths:
         description: "maximum number of records to return"
         required: false
         type: "integer"
-        maximum: 50.0
+        maximum: 50
         minimum: 0
         format: "int32"
       responses:
@@ -61,10 +61,12 @@ paths:
               $ref: "#/definitions/NoteItem"
         "400":
           description: "bad input parameter"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
     post:
       tags:
-      - "developers"
+      - "users"
       summary: "adds a note item"
       description: "Adds an item to the database"
       operationId: "addNote"
@@ -88,10 +90,12 @@ paths:
           description: "invalid input, object invalid"
         "409":
           description: "an existing item already exists"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
     put:
       tags:
-      - "developers"
+      - "users"
       summary: "updates a note item"
       description: "Updates an item in the database"
       operationId: "updateNote"
@@ -109,10 +113,12 @@ paths:
           description: "item updated"
         "400":
           description: "invalid input, object invalid"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
     delete:
       tags:
-      - "developers"
+      - "users"
       summary: "removes a note item"
       description: "Removes an item from the database"
       operationId: "removeNote"
@@ -127,7 +133,9 @@ paths:
           description: "item removed"
         "400":
           description: "invalid input, object invalid"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
   /song:
     get:
       tags:
@@ -156,7 +164,7 @@ paths:
         description: "maximum number of records to return"
         required: false
         type: "integer"
-        maximum: 300.0
+        maximum: 300
         minimum: 0
         format: "int32"
       - name: "title"
@@ -191,7 +199,7 @@ paths:
       x-swagger-router-controller: "Users"
     post:
       tags:
-      - "developers"
+      - "users"
       summary: "adds a song item"
       description: "Adds an item to the database"
       operationId: "addSong"
@@ -215,10 +223,12 @@ paths:
           description: "invalid input, object invalid"
         "409":
           description: "an existing item already exists"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
     put:
       tags:
-      - "developers"
+      - "users"
       summary: "updates a song item"
       description: "Updates an item in the database"
       operationId: "updateSong"
@@ -238,10 +248,12 @@ paths:
             $ref: "#/definitions/SongItem"
         "400":
           description: "invalid input, object invalid"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
     delete:
       tags:
-      - "developers"
+      - "users"
       summary: "removes a song item"
       description: "Removes an item from the database"
       operationId: "removeSong"
@@ -256,11 +268,13 @@ paths:
           description: "item removed"
         "400":
           description: "invalid input, object invalid"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
   /tag:
     get:
       tags:
-      - "developers"
+      - "users"
       summary: "Search tag"
       description: "By passing in the appropriate options, you can search for\navailable\
         \ tag in the system\n"
@@ -285,7 +299,7 @@ paths:
         description: "maximum number of records to return"
         required: false
         type: "integer"
-        maximum: 300.0
+        maximum: 300
         minimum: 0
         format: "int32"
       responses:
@@ -297,10 +311,12 @@ paths:
               $ref: "#/definitions/TagItem"
         "400":
           description: "invalid input, object invalid"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
     post:
       tags:
-      - "developers"
+      - "users"
       summary: "adds a tag item"
       description: "Adds an item to the database"
       operationId: "addTag"
@@ -324,10 +340,12 @@ paths:
           description: "invalid input, object invalid"
         "409":
           description: "an existing item already exists"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
     put:
       tags:
-      - "developers"
+      - "users"
       summary: "updates a tag item"
       description: "Updates an item in the database"
       operationId: "updateTag"
@@ -345,10 +363,12 @@ paths:
           description: "item updated"
         "400":
           description: "invalid input, object invalid"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
     delete:
       tags:
-      - "developers"
+      - "users"
       summary: "removes a song item"
       description: "Removes an item from the database"
       operationId: "removeTag"
@@ -363,11 +383,13 @@ paths:
           description: "item removed"
         "400":
           description: "invalid input, object invalid"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
   /ytitems:
     get:
       tags:
-      - "developers"
+      - "users"
       summary: "Get data"
       description: "By passing in url, you can fetch data\n"
       operationId: "getYtItems"
@@ -397,7 +419,9 @@ paths:
               $ref: "#/definitions/YtVideoItem"
         "400":
           description: "invalid input, object invalid"
-      x-swagger-router-controller: "Developers"
+      security:
+      - AuthorizationHeader: []
+      x-swagger-router-controller: "Users"
   /user/register:
     post:
       tags:
