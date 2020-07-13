@@ -109,17 +109,16 @@ exports.getYtItems = function(title,limit) {
 		});
 
 	function createYtItems(rawHtml) {
-		const resultsContainer = rawHtml.match(/<ol id=\"item-section(.*\s*)*?<\/ol>/)[0];
-		const ytItems = resultsContainer.split('<div class="yt-lockup ')
-			.slice(1, limit + 1)
-			.map((singleYtResult)=> {
-				const encodedTitle = singleYtResult.match('<a href=.*?title="([^"]*)')[1];
-				return {
-					title: decodeHtml(encodedTitle),
-					videoId: singleYtResult.match('<a href=.*?v=([^"&]*)')[1],
-					thumbnailUrl: singleYtResult.match('<img.*?src="([^"?]*)')[1]
-				}
-			});
+		const resultsContainer = rawHtml.match(/window\["ytInitialData"\]\s=\s(.*)/)[1].slice(0, -1);
+		const parsed = JSON.parse(resultsContainer);
+		const videos = parsed.contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.contents[0].itemSectionRenderer.contents;
+		const ytItems = videos.map(vid => {
+			return vid.videoRenderer && {
+				videoId: vid.videoRenderer.videoId,
+				title: vid.videoRenderer.title.runs[0].text,
+				thumbnailUrl: vid.videoRenderer.thumbnail.thumbnails[0].url
+			}
+		}).filter(ytItem => !!ytItem).slice(0, limit);
 		return ytItems;
 	}
 }
