@@ -16,6 +16,7 @@
     "bcrypt": "^4.0.1",
     "connect": "^3.2.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "js-yaml": "^3.3.0",
     "jsonwebtoken": "^8.5.1",
     "mongo": "^0.1.0",

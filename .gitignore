@@ -1,4 +1,4 @@
 nodejs-server/node_modules/
-ignore/
+nodejs-server/.env
 
 javascript/node_modules/
