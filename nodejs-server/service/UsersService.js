@@ -109,7 +109,7 @@ exports.getYtItems = function(title,limit) {
 		});
 
 	function createYtItems(rawHtml) {
-		const resultsContainer = rawHtml.match(/window\["ytInitialData"\]\s=\s(.*)/)[1].slice(0, -1);
+		const resultsContainer = rawHtml.match(/ytInitialData\s=\s(.*)/)[1].slice(0, -2);
 		const parsed = JSON.parse(resultsContainer);
 		const videos = parsed.contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.contents[0].itemSectionRenderer.contents;
 		const ytItems = videos.map(vid => {

@@ -2,3 +2,5 @@ nodejs-server/node_modules/
 nodejs-server/.env
 
 javascript/node_modules/
+
+ignore/

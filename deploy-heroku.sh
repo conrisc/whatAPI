@@ -1,6 +1,7 @@
 git checkout -b temp-heroku-master
 rm .gitignore
-echo /javascript > .gitignore
+echo javascript/ > .gitignore
+echo ignore/ >> .gitignore
 echo .env >> .gitignore
 mv nodejs-server/* ./
 git add .
