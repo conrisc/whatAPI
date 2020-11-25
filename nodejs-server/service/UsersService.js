@@ -109,16 +109,22 @@ exports.getYtItems = function(title,limit) {
 		});
 
 	function createYtItems(rawHtml) {
-		const resultsContainer = rawHtml.match(/ytInitialData\s=\s(.*)/)[1].slice(0, -2);
-		const parsed = JSON.parse(resultsContainer);
-		const videos = parsed.contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.contents[0].itemSectionRenderer.contents;
-		const ytItems = videos.map(vid => {
-			return vid.videoRenderer && {
-				videoId: vid.videoRenderer.videoId,
-				title: vid.videoRenderer.title.runs[0].text,
-				thumbnailUrl: vid.videoRenderer.thumbnail.thumbnails[0].url
-			}
-		}).filter(ytItem => !!ytItem).slice(0, limit);
+		let resultsContainer = rawHtml.match(/ytInitialData\s=\s(.*);<\/sc/)[1];
+		let ytItems = [];
+		try {
+			const parsed = JSON.parse(resultsContainer);
+			const videos = parsed.contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.contents[0].itemSectionRenderer.contents;
+			ytItems = videos.map(vid => {
+				return vid.videoRenderer && {
+					videoId: vid.videoRenderer.videoId,
+					title: vid.videoRenderer.title.runs[0].text,
+					thumbnailUrl: vid.videoRenderer.thumbnail.thumbnails[0].url
+				}
+			}).filter(ytItem => !!ytItem).slice(0, limit);
+		} catch(e) {
+			console.log('### [Error] Unable to parse results to JSON: ', resultsContainer);
+		}
+
 		return ytItems;
 	}
 }
