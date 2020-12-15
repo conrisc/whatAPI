@@ -175,16 +175,17 @@ exports.removeSong = function(id) {
     function removeSong(db) {
 			const collection = db.collection('songs');
 
-			collection.deleteOne({ _id: new ObjectId(id) }, (err, r) => {
-				if (err) {
+			collection
+				.findOneAndDelete({ _id: new ObjectId(id) })
+				.then(res => {
+					console.log('Song removed: ', res);
+					resolve();
+				})
+				.catch(err => {
 					console.error(err);
 					reject();
-				}
-				else {
-					console.log('Song removed: ', r);
-					resolve();
-				}
-			});
+				})
+
     }
   });
 }
