@@ -192,21 +192,39 @@ exports.removeSong = function(id) {
 
 
 /**
- * removes a song item
+ * removes a tag item
  * Removes an item from the database
  *
  * id String tag id
  * no response value expected for this operation
  **/
-exports.removeTag = function(id) {
+exports.removeTag = function(tagId) {
   return new Promise(function(resolve, reject) {
     DBService.getDB()
-      .then(removeTag);
+	  .then(removeTagFromSongs)
+	  .then(removeTag)
+	  .catch(err => {
+		  console.error(err);
+		  reject();
+	  })
 
-    function removeTag() {
+	function removeTagFromSongs(db) {
+		const collection = db.collection('songs');
+		// collection.updateMany({ tags: { $all: [tagId] } }).
+		return collection.updateMany({}, {
+			$pull: {
+				tags: { $in : [tagId] }
+			}
+		}).then(res => {
+			console.log('Songs updated: ', res);
+			return db;
+		})
+	}
+
+    function removeTag(db) {
 			const collection = db.collection('tags');
 
-			collection.deleteOne({ _id: new ObjectId(id) }, (err, r) => {
+			collection.deleteOne({ _id: new ObjectId(tagId) }, (err, r) => {
 				if (err) {
 					console.error(err);
 					reject();
