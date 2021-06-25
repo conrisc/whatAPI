@@ -109,7 +109,7 @@ exports.getYtItems = function(title,limit) {
 		});
 
 	function createYtItems(rawHtml) {
-		let resultsContainer = rawHtml.match(/ytInitialData\s=\s(.*);<\/sc/)[1];
+		let resultsContainer = rawHtml.match(/ytInitialData\s=\s(.*?);<\/sc/)[1];
 		let ytItems = [];
 		try {
 			const parsed = JSON.parse(resultsContainer);
@@ -122,7 +122,7 @@ exports.getYtItems = function(title,limit) {
 				}
 			}).filter(ytItem => !!ytItem).slice(0, limit);
 		} catch(e) {
-			console.log('### [Error] Unable to parse results to JSON: ', resultsContainer);
+			console.log('### [Error] Unable to parse results to JSON: ', e.message);
 		}
 
 		return ytItems;
